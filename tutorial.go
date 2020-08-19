@@ -53,4 +53,10 @@ func main() {
 	// all data types got default values e.g uint64 = 0
 	var numbers uint64
 	fmt.Println(numbers)
+
+	// format ; das format wird im string gespeichert und dann geprinted
+	var out string = fmt.Sprintf("Number: %07d is cool", 45)
+	fmt.Println(out)
+
+	// escapes: \n (newline) \t (tab)
 }
