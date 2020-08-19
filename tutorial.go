@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
 
 func main() {
 
@@ -59,4 +64,9 @@ func main() {
 	fmt.Println(out)
 
 	// escapes: \n (newline) \t (tab)
+	fmt.Printf("What year were you born?")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	input, _ := strconv.ParseInt(scanner.Text(), 10, 64)
+	fmt.Printf("You will be %d years old at the end of 2020", -input+2020)
 }
