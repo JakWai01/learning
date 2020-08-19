@@ -8,5 +8,7 @@ func main() {
 	var name string = "Hello World!"
 	name = "Jakob"
 	name = "Paula"
+	var number int = 12
+	fmt.Println(number)
 	fmt.Println(name)
 }
