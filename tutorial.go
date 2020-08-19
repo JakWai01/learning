@@ -10,11 +10,13 @@ func main() {
 	name = "Jakob"
 	name = "Paula"
 	var number int = 12
+
 	// there are signed integers and unsigned integers
 	var unsignednumber uint8 = 255
 	var signednumber int8 = -128
 
 	var floaty float32 = 1.2
+
 	// uint (32 or 64 bits)
 	// int (same size as uint)
 	// float32 or float64
@@ -29,4 +31,26 @@ func main() {
 	fmt.Println(number)
 	fmt.Println(name)
 
+	// you actually don't have to declare a data type.
+	// go is guessing which type it is, could be wrong. So rather declare it.
+	var newnum = 12
+	var newstring = "Hallo"
+
+	// Prints datatype
+	fmt.Printf("%T", newnum)
+	fmt.Println()
+	fmt.Printf("%T", newstring)
+	fmt.Println()
+
+	// we can also just declare without var
+	qwe := 6
+	fmt.Printf("%T", qwe)
+	fmt.Println()
+
+	test := true
+	fmt.Println(test)
+
+	// all data types got default values e.g uint64 = 0
+	var numbers uint64
+	fmt.Println(numbers)
 }
