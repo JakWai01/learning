@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	/*
 							// if a variable isn't used -> error
@@ -193,4 +195,20 @@ func main() {
 		}
 
 	*/
+
+	var mp map[string]int = map[string]int{
+		"apple":  5,
+		"pear":   6,
+		"orange": 9,
+	}
+	fmt.Println(mp["apple"])
+	// so kann man einfach elemente hinzufügen
+	mp["tim"] = 900
+
+	val, ok := mp["apple"]
+	fmt.Println(val, ok)
+	fmt.Println(mp)
+
+	// -> nur arrays benutzen wenn die reihenfolge wichtig ist
+
 }
