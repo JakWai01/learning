@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 /*
 func main() {
 
@@ -305,7 +303,7 @@ func changeValue2(str string) {
 }
 
 */
-
+/*
 type Point struct {
 	x int32
 	y int32
@@ -329,3 +327,49 @@ func main() {
 	c1 := Circle{4.56, &Point{4, 5}}
 	fmt.Println(c1.center.x)
 }
+*/
+
+//Methods
+/*
+type Student struct {
+	name   string
+	grades []int
+	age    int
+}
+
+func (s *Student) getMaxGrade() int {
+	curMax := 0
+
+	for _, v := range s.grades {
+		if curMax < v {
+			curMax = v
+		}
+	}
+	return curMax
+}
+func (s *Student) setAge(age int) {
+	s.age = age
+}
+func main() {
+	s1 := Student{"Jakob", []int{70, 90, 80, 85}, 19}
+	s2 := Student{"Joe", []int{70, 32, 12, 51}, 19}
+	fmt.Println(s1)
+	s1.setAge(7)
+	fmt.Println(s1)
+	average := s1.getAverageGrade()
+	fmt.Println(average)
+	average2 := s2.getAverageGrade()
+	fmt.Println(average2)
+	currentMax := s1.getMaxGrade()
+	fmt.Println(currentMax)
+}
+
+func (s Student) getAverageGrade() float32 {
+	sum := 0
+	for _, v := range s.grades {
+		sum += v
+	}
+	return float32(sum) / float32(len(s.grades))
+}
+
+*/
