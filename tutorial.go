@@ -236,7 +236,7 @@ func add(x, y int) (z1 int, z2 int) {
 	return
 }
 
-*/
+
 
 func test2(myFunc func(int) int) {
 	fmt.Println(myFunc(7))
@@ -261,3 +261,48 @@ func main() {
 	x := returnFunc("goodbye")
 	x()
 }
+*/
+
+func main() {
+	/*var x int = 5
+	y := x
+	y = 7
+	fmt.Println(x, y)*/
+	//var x map[string]int = map[string]int{"hello": 3}
+	// y ist sozusagend nur ein anderer Name für x und deshalb wird x auch geändert
+	/*y := x
+	y["y"] = 100
+
+	fmt.Println(x, y)
+	*/
+	// Arrays sind immutable. Sclices und Maps nicht (glaube ich)
+	/*var x [2]int = [2]int{3, 4}
+	y := x
+	y[0] = 100
+	fmt.Println(x, y)
+
+	*/
+
+	/*
+	x := 7
+	y := &x
+	// Gibt einem die reference von x (die Speicherreservierung oder den Pointer)
+	fmt.Println(x, y)
+	// * = dereference
+	*y = 8
+	fmt.Println(x, y)
+
+	toChange := "hello"
+	changeValue2(toChange)
+	fmt.Println(toChange)
+}
+
+func changeValue(str *string) {
+	*str = "chagend!"
+}
+
+func changeValue2(str string) {
+	str = "changed!"
+}
+
+/*
