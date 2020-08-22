@@ -2,8 +2,9 @@ package main
 
 import "fmt"
 
+/*
 func main() {
-	/*
+
 								// if a variable isn't used -> error
 								// only numbers, letters and underscores in the variable names
 								var name string = "Hello World!"
@@ -210,7 +211,7 @@ func main() {
 		fmt.Println(mp)
 
 		// -> nur arrays benutzen wenn die reihenfolge wichtig ist
-	*/
+
 
 	// Functions (func main) function sind methods
 
@@ -233,4 +234,30 @@ func add(x, y int) (z1 int, z2 int) {
 	z2 = x - y
 	fmt.Println("before return")
 	return
+}
+
+*/
+
+func test2(myFunc func(int) int) {
+	fmt.Println(myFunc(7))
+}
+
+func returnFunc(x string) func() {
+	return func() {
+		fmt.Println(x)
+	}
+}
+func main() {
+	// extrem effiziente anwendung, das ist im Endeffekt die Methode und der Methodcall in einem
+	//test := func(x int) int {
+	//	return -x
+	//}
+	// functions can be passed around
+	//test3 := func(x int) int {
+	//	return x * 7
+	//}
+	//test2(test3)
+	returnFunc("hello")()
+	x := returnFunc("goodbye")
+	x()
 }
