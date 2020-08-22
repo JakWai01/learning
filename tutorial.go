@@ -263,27 +263,26 @@ func main() {
 }
 */
 
-func main() {
-	/*var x int = 5
-	y := x
-	y = 7
-	fmt.Println(x, y)*/
-	//var x map[string]int = map[string]int{"hello": 3}
-	// y ist sozusagend nur ein anderer Name für x und deshalb wird x auch geändert
-	/*y := x
-	y["y"] = 100
+//func main() {
+/*var x int = 5
+y := x
+y = 7
+fmt.Println(x, y)*/
+//var x map[string]int = map[string]int{"hello": 3}
+// y ist sozusagend nur ein anderer Name für x und deshalb wird x auch geändert
+/*y := x
+y["y"] = 100
 
-	fmt.Println(x, y)
-	*/
-	// Arrays sind immutable. Sclices und Maps nicht (glaube ich)
-	/*var x [2]int = [2]int{3, 4}
-	y := x
-	y[0] = 100
-	fmt.Println(x, y)
+fmt.Println(x, y)
+*/
+// Arrays sind immutable. Sclices und Maps nicht (glaube ich)
+/*var x [2]int = [2]int{3, 4}
+y := x
+y[0] = 100
+fmt.Println(x, y)
 
-	*/
-
-	/*
+*/
+/*
 	x := 7
 	y := &x
 	// Gibt einem die reference von x (die Speicherreservierung oder den Pointer)
@@ -305,4 +304,28 @@ func changeValue2(str string) {
 	str = "changed!"
 }
 
-/*
+*/
+
+type Point struct {
+	x int32
+	y int32
+}
+
+type Circle struct {
+	radius float64
+	center *Point
+}
+
+func changeX(pt Point) {
+	pt.x = 100
+}
+func main() {
+	var p1 Point = Point{1, 2}
+	var p2 Point = Point{-5, 7}
+	fmt.Println(p1.x)
+	fmt.Println(p1.y, p2.y)
+	changeX(p1)
+	fmt.Println(p1)
+	c1 := Circle{4.56, &Point{4, 5}}
+	fmt.Println(c1.center.x)
+}
