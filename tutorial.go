@@ -1,10 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
-
 /*
 func main() {
 
@@ -378,7 +373,7 @@ func (s Student) getAverageGrade() float32 {
 }
 
 */
-
+/*
 type shape interface {
 	area() float64
 }
@@ -413,3 +408,4 @@ func main() {
 		fmt.Println(getArea(shape))
 	}
 }
+*/
