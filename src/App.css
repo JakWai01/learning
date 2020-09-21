@@ -1,12 +1,24 @@
 body {
   font-family: helvetica;
-  background-color: rgb(79, 194, 79);
+  background-color: rgb(52, 133, 165);
+  color: rgb(159, 211, 235);
 }
 
 button {
   border: none;
   outline: none;
+  background-color: rgb(159, 211, 235);
+  padding: 8px;
+  color: white;
 }
 button:hover {
-  background-color: gray;
+  background-color: rgb(179, 228, 236);
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 36px;
 }

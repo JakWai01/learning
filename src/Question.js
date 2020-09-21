@@ -9,16 +9,16 @@ function Question({ title = "default", answer = "1", wrong1 = "2", wrong2 = "3",
     const [colorThird, setColorThird] = useState("");
     const [colorFourth, setColorFourth] = useState("");
 
-    const rightFirst = () => setColorFirst("green");
-    const rightSecond = () => setColorSecond("green");
-    const rightThird = () => setColorThird("green");
-    const rightFourth = () => setColorFourth("green");
+    const rightFirst = () => setColorFirst("rgb(67, 201, 67)");
+    const rightSecond = () => setColorSecond("rgb(67, 201, 67)");
+    const rightThird = () => setColorThird("rgb(67, 201, 67)");
+    const rightFourth = () => setColorFourth("rgb(67, 201, 67)");
 
     const [answers] = useState(shuffle([answer, wrong1, wrong2, wrong3]))
 
     return (
         <div>
-            <h1>{title}</h1>
+            <h2>{title}</h2>
             <button onClick={answers[0] === answer ? rightFirst : console.log("Wrong")} style={{ backgroundColor: colorFirst }}>{answers[0]}</button>
             <button onClick={answers[1] === answer ? rightSecond : console.log("Wrong")} style={{ backgroundColor: colorSecond }}>{answers[1]}</button>
             <button onClick={answers[2] === answer ? rightThird : console.log("Wrong")} style={{ backgroundColor: colorThird }}>{answers[2]}</button>
