@@ -27,13 +27,17 @@ button {
 }
 
 li {
-    list-style-type: none;
     
     font-size: 28px;
-    
+    margin-left: 0;
+    padding-left: 0;
    
 }
 
+ul {
+    list-style: none;
+    padding-left: 0;
+}
 input {
     text-align: center;
     outline: none;
