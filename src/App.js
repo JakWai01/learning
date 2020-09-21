@@ -5,8 +5,7 @@ import './App.css';
 
 // What do we need?
 // [ ] feature to add question in the app
-// [ ] styling 
-// [ ] wrong answer -> remove from array
+// [x] styling 
 
 function App() {
   return (
