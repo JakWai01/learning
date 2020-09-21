@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(93, 48, 151);
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(193, 102, 211);
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    font-size: 60px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 34px;
+}
+
+input {
+    padding: 5px;
+}
+
+button {
+    padding: 7px;
+    background-color: rgb(193, 98, 206);
+    border: none;
+    color: white;
+}
+
+li {
+    list-style-type: none;
+    text-align: left;
+    font-size: 28px;
+    margin-left: 25vw;
+   
+}
+
+input {
+    text-align: center;
+    outline: none;
+}
+
+button {
+    outline: none;
+}
+
+button:hover {
+    background-color: rgb(207, 110, 219);
+}
+
+form {
+    text-align: center;
+}
