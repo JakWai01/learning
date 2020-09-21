@@ -1,0 +1,12 @@
+body {
+  font-family: helvetica;
+  background-color: rgb(79, 194, 79);
+}
+
+button {
+  border: none;
+  outline: none;
+}
+button:hover {
+  background-color: gray;
+}
