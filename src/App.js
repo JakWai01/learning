@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-
-  const[joke, setJoke] = useState("")
+  const [dogs, setDogs] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://api.chucknorris.io/jokes/random");
+      const res = await fetch("https://api.thedogapi.com/v1/images/search");
       const data = await res.json();
-          
-      setJoke(data.value);
+
+      setDogs(data)
     }
 
     fetchData()
-  }, []);
+  }, [])
 
   return (
-    <div>{joke}</div>
+    <>
+      {dogs.map((dog, index) => <img src={dog.url} alt={`Dog ${index}`} key={index} />)}
+    </>
   )
-
 }
 
 export default App;
