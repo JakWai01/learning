@@ -11,9 +11,9 @@ const Home = () => {
         body: "First todo body"
         },
         {
-            id: 2,
-            title: "Second todo",
-            body: "Second todo body"
+        id: 2,
+        title: "Second todo",
+        body: "Second todo body"
         }
     ])
  }, [])
