@@ -16,7 +16,7 @@ func main() {
 	fmt.Println(*a)
 	fmt.Println(*b)
 	fmt.Println(*c)
-
+	
 	switch(*c) {
 	case "Add": fmt.Println(add(*a, *b))
 	case "Substract": fmt.Println(substract(*a,*b))
