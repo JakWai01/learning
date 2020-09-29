@@ -1,51 +1,38 @@
-// package main
+package main
 
-// import (
-// 	"bufio"
-// 	"flag"
-// 	"fmt"
-// 	"log"
-// 	"net"
-// 	"sync"
-// )
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+)
 
-// func main() {
+type Article struct {
+	Title   string `json:"Title"`
+	Desc    string `json:"desc"`
+	Content string `json:"content"`
+}
 
-// 	// so kann man beim start vom Programm parameter mitgeben
-// 	author := flag.String("author", "Jakob Waibel", "Author of the code")
-// 	flag.Parse()
-// 	fmt.Println(*author)
+type Articles []Article
 
-// 	// waitgroup
-// 	wg := new(sync.WaitGroup)
-// 	wg.Add(2)
+func allArticles(w http.ResponseWriter, r *http.Request) {
+	articles := Articles{
+		Article{Title: "Test Title", Desc: "Test Description", Content: "Hello World"},
+	}
+	fmt.Println("Endpoint Hit: All Articles Endpoint")
+	json.NewEncoder(w).Encode(articles)
+}
 
-// 	a := 1
-// 	b := 1
-// 	go add(a, b, wg)
-// 	go substract(a, b, wg)
+func homePage(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Homepage Endpoint Hit")
+}
 
-// 	wg.Wait()
+func handleRequest() {
+	http.HandleFunc("/", homePage)
+	http.HandleFunc("/articles", allArticles)
+	log.Fatal(http.ListenAndServe(":8081", nil))
+}
 
-// 	// net
-// 	conn, err := net.Dial("tcp", "golang.org:80")
-// 	if err != nil {
-// 		log.Fatal()
-// 	}
-// 	fmt.Fprintf(conn, "GET / HTTP/1.0\r\n\r\n")
-// 	status, err := bufio.NewReader(conn).ReadString('\n')
-// 	fmt.Println(status)
-
-// }
-
-// func add(a, b int, wg *sync.WaitGroup) int {
-// 	defer wg.Done()
-// 	log.Print("Additions has been done!")
-// 	return a + b
-// }
-
-// func substract(a, b int, wg *sync.WaitGroup) int {
-// 	defer wg.Done()
-// 	log.Print("Substraction has been done!")
-// 	return a - b
-// }
+func main() {
+	handleRequest()
+}

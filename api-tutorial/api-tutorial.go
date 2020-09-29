@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -34,10 +34,11 @@ func main() {
 		log.Fatal(getErr)
 	}
 
+	// ensures that the Body gets closed
 	if res.Body != nil {
 		defer res.Body.Close()
 	}
-	
+
 	body, readErr := ioutil.ReadAll(res.Body)
 	if readErr != nil {
 		log.Fatal(readErr)
@@ -48,7 +49,6 @@ func main() {
 	if jsonErr != nil {
 		log.Fatal(jsonErr)
 	}
-
 
 	fmt.Println(people1.Number)
 
