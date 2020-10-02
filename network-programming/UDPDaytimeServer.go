@@ -1,48 +1,48 @@
-package main
+// package main
 
-/*
-UDPDaytimeServer
-*/
+// /*
+// UDPDaytimeServer
+// */
 
-import (
-	"log"
-	"net"
-	"os"
-	"time"
-)
+// import (
+// 	"log"
+// 	"net"
+// 	"os"
+// 	"time"
+// )
 
-func main() {
+// func main() {
 
-	service := ":1200"
+// 	service := ":1200"
 
-	udpAddr, err := net.ResolveUDPAddr("up4", service)
-	checkError(err)
+// 	udpAddr, err := net.ResolveUDPAddr("up4", service)
+// 	checkError(err)
 
-	conn, err := net.ListenUDP("udp", udpAddr)
-	checkError(err)
+// 	conn, err := net.ListenUDP("udp", udpAddr)
+// 	checkError(err)
 
-	for {
-		handleClient()
-	}
-}
+// 	for {
+// 		handleClient()
+// 	}
+// }
 
-func handleClient() {
+// func handleClient() {
 
-	var buf [512]byte
+// 	var buf [512]byte
 
-	_, arr, err := conn.ReadFromUDP(buf[0:])
+// 	_, arr, err := conn.ReadFromUDP(buf[0:])
 
-	if err != nil {
-		return
-	}
+// 	if err != nil {
+// 		return
+// 	}
 
-	daytime := time.Now().String()
+// 	daytime := time.Now().String()
 
-	conn.WriteToUDP([]byte(daytime), addr)
-}
+// 	conn.WriteToUDP([]byte(daytime), addr)
+// }
 
-func checkError(err error) {
+// func checkError(err error) {
 
-	log.Fatal(err)
-	os.Exit(1)
-}
+// 	log.Fatal(err)
+// 	os.Exit(1)
+// }
