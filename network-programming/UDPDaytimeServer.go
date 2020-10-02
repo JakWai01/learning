@@ -7,6 +7,7 @@ UDPDaytimeServer
 import (
 	"log"
 	"net"
+	"os"
 	"time"
 )
 
@@ -43,4 +44,5 @@ func handleClient() {
 func checkError(err error) {
 
 	log.Fatal(err)
+	os.Exit(1)
 }
