@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	listenAddress := flag.String("laddr", "0.0.0.0:8080", "Listen address.")
+	listenAddress := flag.String("laddr", "192.168.178.38:30036", "Listen address.")
 
 	flag.Parse()
 
