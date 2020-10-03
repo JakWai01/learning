@@ -2,26 +2,29 @@
  tcpServer
 */
 
-package main
+package server
 
 import (
-	"flag"
 	"fmt"
 	"io"
 	"log"
 	"net"
 )
 
-func main() {
+// TCPServer creates TCP server
+type TCPServer struct {
+	laddr string
+}
 
-	var port = flag.String("port", "8080", "Assign to which port to listen to")
-	flag.Parse()
+// NewTCPServer initializes laddr
+func NewTCPServer(laddr string) string {
+	return laddr
+}
 
-	service := *port
+// Open waits for requests
+func (s *TCPServer) Open() error {
 
-	fmt.Println(service)
-
-	tcpAddr, err := net.ResolveTCPAddr("tcp", "0.0.0.0:"+string(service))
+	tcpAddr, err := net.ResolveTCPAddr("tcp", s.laddr)
 	checkError(err)
 
 	ln, err := net.ListenTCP("tcp", tcpAddr)
@@ -33,7 +36,6 @@ func main() {
 
 		go handleConnection(conn)
 	}
-
 }
 
 func handleConnection(conn net.Conn) {

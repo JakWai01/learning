@@ -7,21 +7,20 @@ package client
 import (
 	"fmt"
 	"net"
-	"os"
 )
 
-// TCPServer consists of laddr
-type TCPServer struct {
+// TCPClient makes TCP Request
+type TCPClient struct {
 	laddr string
 }
 
-// NewTCPServer initializes laddr
-func NewTCPServer(laddr string) string {
+// NewTCPClient initializes laddr
+func NewTCPClient(laddr string) string {
 	return laddr
 }
 
-// Open initializes TCP server with laddr
-func (s *TCPServer) Open() error {
+// Open sends request to TCP server with laddr as argument
+func (s *TCPClient) Open() error {
 
 	tcpAddr, err := net.ResolveTCPAddr("tcp", s.laddr)
 	checkError(err)
@@ -38,8 +37,6 @@ func (s *TCPServer) Open() error {
 	checkError(err)
 
 	fmt.Println(buf[0:n])
-
-	os.Exit(0)
 
 	return nil
 
