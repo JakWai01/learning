@@ -6,6 +6,7 @@ package client
 
 import (
 	"fmt"
+	"log"
 	"net"
 )
 
@@ -15,8 +16,8 @@ type TCPClient struct {
 }
 
 // NewTCPClient initializes laddr
-func NewTCPClient(laddr string) string {
-	return laddr
+func NewTCPClient(laddr string) *TCPClient {
+	return &TCPClient{laddr}
 }
 
 // Open sends request to TCP server with laddr as argument
@@ -42,8 +43,11 @@ func (s *TCPClient) Open() error {
 
 }
 
-func checkError(err error) error {
-	return err
+func checkError(err error) {
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 // func main() {

@@ -6,6 +6,7 @@
 
 // import (
 // 	"fmt"
+// 	"log"
 // 	"net"
 // 	"os"
 // )
@@ -22,7 +23,7 @@
 // 	udpAddr, err := net.ResolveUDPAddr("up4", service)
 // 	checkError(err)
 
-// 	conn, err := net.DialUDP("udp", nil, updAddr)
+// 	conn, err := net.DialUDP("udp", nil, udpAddr)
 // 	checkError(err)
 
 // 	_, err := conn.Write([]byte("anything"))

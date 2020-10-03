@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/JakWai01/golang-tutorial/pkg/server"
+	"github.com/JakWai01/golang-tutorial/pkg/client"
 )
 
 func main() {
@@ -14,10 +14,10 @@ func main() {
 
 	log.Println(*listenAddress)
 
-	tcpServer := server.NewTCPServer(*listenAddress)
+	tcpClient := client.NewTCPClient(*listenAddress)
 
 	// Open instances
-	if err := tcpServer.Open(); err != nil {
-		log.Fatal("could not open tcpServer", err)
+	if err := tcpClient.Open(); err != nil {
+		log.Fatal("could not open tcpClient", err)
 	}
 }

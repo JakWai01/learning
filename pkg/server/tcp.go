@@ -17,12 +17,12 @@ type TCPServer struct {
 }
 
 // NewTCPServer initializes laddr
-func NewTCPServer(laddr string) string {
-	return laddr
+func NewTCPServer(laddr string) *TCPServer {
+	return &TCPServer{laddr}
 }
 
 // Open waits for requests
-func (s *TCPServer) Open() error {
+func (s TCPServer) Open() error {
 
 	tcpAddr, err := net.ResolveTCPAddr("tcp", s.laddr)
 	checkError(err)
