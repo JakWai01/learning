@@ -41,7 +41,7 @@ func saveJSON(fileName string, key interface{}) {
 	outFile.Close()
 }
 
-func CheckError(err error) {
+func checkError(err error) {
 
 	log.Fatal(err)
 	os.Exit(1)

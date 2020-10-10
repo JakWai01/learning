@@ -15,7 +15,7 @@ func main() {
 
 	service := ":1200"
 
-	tcpAddr, err := net.ListenTCP("tcp", tcpAddr)
+	tcpAddr, err := net.ListenTCP("tcp", service)
 	checkError(err)
 
 	for {
@@ -30,7 +30,7 @@ func main() {
 	}
 }
 
-func CheckError() {
+func checkError() {
 	if err != nil {
 		fmt.Println(os.Stderr, "Fatal error: %s", err.Error())
 		os.Exit(1)
