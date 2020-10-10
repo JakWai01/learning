@@ -6,8 +6,10 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
@@ -66,15 +68,46 @@ func main() {
 
 func createDb() {
 
-	db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/")
+	database, err := sql.Open("sqlite3", "./todos.db")
+
 	if err != nil {
-		fmt.Println(err.Error())
-	} else {
-		fmt.Println("Database created successfully")
+		log.Fatal(err)
 	}
-	if err := db.Ping(); err != nil {
-		panic(err)
+	statement, err := database.Prepare("CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY, todo TEXT)")
+
+	if err != nil {
+		log.Fatal(err)
 	}
+	statement.Exec()
+	statement, err = database.Prepare("INSERT INTO todos (todo) VALUES (?)")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	statement.Exec("digital decluttering")
+	rows, err := database.Query("SELECT id, todo FROM todos")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	var id int
+	var todo string
+
+	for rows.Next() {
+		rows.Scan(&id, &todo)
+		fmt.Println(strconv.Itoa(id) + ": " + todo)
+	}
+
+	fmt.Println("OK")
+
+	// db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:8000)/test")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// } else {
+	// 	fmt.Println("OK")
+	// }
+	// defer db.Close()
+
 	// _, err = db.Exec("CREATE DATABASE todos")
 	// if err != nil {
 	// 	fmt.Println(err.Error())
@@ -101,6 +134,6 @@ func createDb() {
 	// 	fmt.Println("Table created successfully..")
 	// }
 
-	defer db.Close()
+	//defer db.Close()
 
 }
