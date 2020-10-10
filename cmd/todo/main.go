@@ -14,7 +14,42 @@ import (
 
 func main() {
 
-	createDb()
+	// Initialize database
+	database, err := sql.Open("sqlite3", "./todos.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	statement, err := database.Prepare("CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY, todo TEXT)")
+	if err != nil {
+		log.Fatal(err)
+	}
+	statement.Exec()
+
+	addEntry(statement, *database, "test", err)
+	// statement, err = database.Prepare("INSERT INTO todos (todo) VALUES (?)")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// statement.Exec("digital decluttering")
+
+	// Prints entries - Browse component
+	browseEntries(database)
+	// rows, err := database.Query("SELECT id, todo FROM todos")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	// var id int
+	// var todo string
+
+	// for rows.Next() {
+	// 	rows.Scan(&id, &todo)
+	// 	fmt.Println(strconv.Itoa(id) + ": " + todo)
+	// }
+
+	fmt.Println("OK")
+
 	// Flags
 
 	// Todo list with simple structure
@@ -66,30 +101,60 @@ func main() {
 	// read out of database
 }
 
-func createDb() {
+//func createDb() {
 
-	database, err := sql.Open("sqlite3", "./todos.db")
+// db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:8000)/test")
+// if err != nil {
+// 	log.Fatal(err)
+// } else {
+// 	fmt.Println("OK")
+// }
+// defer db.Close()
 
-	if err != nil {
-		log.Fatal(err)
-	}
-	statement, err := database.Prepare("CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY, todo TEXT)")
+// _, err = db.Exec("CREATE DATABASE todos")
+// if err != nil {
+// 	fmt.Println(err.Error())
+// } else {
+// 	fmt.Println("Successfully created database..")
+// }
 
-	if err != nil {
-		log.Fatal(err)
-	}
-	statement.Exec()
+// _, err = db.Exec("USE todos")
+// if err != nil {
+// 	log.Fatal(err)
+// } else {
+// 	fmt.Println("DB selected successfully")
+// }
+
+// stmt, err := db.Prepare("CREATE Table togos(id int NOT NULL AUTO_INCREMENT, todo varchar(50), PRIMARY KEY (id));")
+// if err != nil {
+// 	log.Fatal(err)
+// }
+
+// _, err = stmt.Exec()
+// if err != nil {
+// 	fmt.Println(err.Error())
+// } else {
+// 	fmt.Println("Table created successfully..")
+// }
+
+//defer db.Close()
+
+//}
+
+func addEntry(statement *sql.Stmt, database sql.DB, content string, err error) {
 	statement, err = database.Prepare("INSERT INTO todos (todo) VALUES (?)")
-
 	if err != nil {
 		log.Fatal(err)
 	}
-	statement.Exec("digital decluttering")
+	statement.Exec(content)
+}
+
+func browseEntries(database *sql.DB) {
 	rows, err := database.Query("SELECT id, todo FROM todos")
-
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	var id int
 	var todo string
 
@@ -97,43 +162,8 @@ func createDb() {
 		rows.Scan(&id, &todo)
 		fmt.Println(strconv.Itoa(id) + ": " + todo)
 	}
+}
 
-	fmt.Println("OK")
-
-	// db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:8000)/test")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// } else {
-	// 	fmt.Println("OK")
-	// }
-	// defer db.Close()
-
-	// _, err = db.Exec("CREATE DATABASE todos")
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// } else {
-	// 	fmt.Println("Successfully created database..")
-	// }
-
-	// _, err = db.Exec("USE todos")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// } else {
-	// 	fmt.Println("DB selected successfully")
-	// }
-
-	// stmt, err := db.Prepare("CREATE Table togos(id int NOT NULL AUTO_INCREMENT, todo varchar(50), PRIMARY KEY (id));")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// _, err = stmt.Exec()
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// } else {
-	// 	fmt.Println("Table created successfully..")
-	// }
-
-	//defer db.Close()
+func removeEntries() {
 
 }
