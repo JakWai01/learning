@@ -26,43 +26,15 @@ func main() {
 	}
 	statement.Exec()
 
-	addEntry(statement, *database, "test", err)
-	// statement, err = database.Prepare("INSERT INTO todos (todo) VALUES (?)")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// statement.Exec("digital decluttering")
-
-	// Prints entries - Browse component
-	browseEntries(database)
-	// rows, err := database.Query("SELECT id, todo FROM todos")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// var id int
-	// var todo string
-
-	// for rows.Next() {
-	// 	rows.Scan(&id, &todo)
-	// 	fmt.Println(strconv.Itoa(id) + ": " + todo)
-	// }
-
-	fmt.Println("OK")
-
-	// Flags
-
-	// Todo list with simple structure
 	exit := false
-	// Menu
 
 	for exit == false {
 		fmt.Println("TODOGO")
-		fmt.Println("1. Display togos")
-		fmt.Println("2. Add togo")
-		fmt.Println("3. Finish togo")
-		fmt.Println("4. Start pomo")
-		fmt.Println("5. Exit")
+		fmt.Println("1. Display togos") // Done
+		fmt.Println("2. Add togo")      // Done
+		fmt.Println("3. Finish togo")   // delete by id
+		fmt.Println("4. Start pomo")    // make timer
+		fmt.Println("5. Exit")          // Done
 
 		reader := bufio.NewReader(os.Stdin)
 		operation, err := reader.ReadString('\n')
@@ -74,11 +46,17 @@ func main() {
 		case "1\n":
 			fallthrough
 		case "d\n":
-
+			browseEntries(database)
 		case "2\n":
 			fallthrough
 		case "a\n":
+			fmt.Println("Enter content of new togo: ")
+			todoContent, err := reader.ReadString('\n')
+			if err != nil {
+				log.Fatal(err)
+			}
 
+			addEntry(statement, *database, todoContent, err)
 		case "3\n":
 			fallthrough
 		case "f\n":
@@ -96,9 +74,6 @@ func main() {
 			fmt.Println("Please enter valid input")
 		}
 	}
-	// write into database
-
-	// read out of database
 }
 
 //func createDb() {
