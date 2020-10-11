@@ -7,10 +7,15 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"sync"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/mattn/go-sqlite3"
+)
+
+var (
+	mux sync.Mutex
 )
 
 func main() {
@@ -95,14 +100,17 @@ func main() {
 }
 
 func addEntry(statement *sql.Stmt, database sql.DB, content string, err error) {
+	mux.Lock()
 	statement, err = database.Prepare("INSERT INTO todos (todo) VALUES (?)")
 	if err != nil {
 		log.Fatal(err)
 	}
 	statement.Exec(content)
+	mux.Unlock()
 }
 
 func browseEntries(database *sql.DB) {
+	mux.Lock()
 	if fileExists("todos.db") {
 		rows, err := database.Query("SELECT id, todo FROM todos")
 		if err != nil {
@@ -119,15 +127,17 @@ func browseEntries(database *sql.DB) {
 	} else {
 		fmt.Println("The database was not created yet! You have to add a togo first")
 	}
-
+	mux.Unlock()
 }
 
 func removeEntries(statement *sql.Stmt, database sql.DB, id int, err error) {
+	mux.Lock()
 	statement, err = database.Prepare("DELETE FROM todos WHERE id=(?)")
 	if err != nil {
 		log.Fatal(err)
 	}
 	statement.Exec(id)
+	mux.Unlock()
 }
 
 func startPomo() {
