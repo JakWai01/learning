@@ -68,6 +68,7 @@ func main() {
 			fmt.Println("Enter id of togo you want to finish: ")
 
 			idString, err := reader.ReadString('\n')
+
 			if err != nil {
 				log.Fatal(err)
 			}
