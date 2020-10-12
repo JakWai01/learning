@@ -7,6 +7,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// database name can be adjusted as variable
 const (
 	host     = "localhost"
 	port     = 5432
