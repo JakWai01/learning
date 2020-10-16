@@ -15,9 +15,14 @@ public class jsonReader {
     // Parsing the contents of the JSON file
     JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("src/main/java/com/advancedJava/jsonReader/data.json"));
 
-    String value = (String)jsonObject.get("ID");
+    String id = (String)jsonObject.get("ID");
+    String firstName = (String)jsonObject.get("First_Name");
+    String lastName = (String)jsonObject.get("Last_Name");
+    String dateOfBirth = (String)jsonObject.get("Date_Of_Birth");
+    String placeOfBirth = (String)jsonObject.get("Place_Of_Birth");
+    String country = (String)jsonObject.get("Country");
 
-    System.out.println(value);
+    System.out.printf("id: %s, firstName: %s, lastName: %s, dateOfBirth: %s, placeOfBirth: %s, country: %s\n", id, firstName, lastName, dateOfBirth, placeOfBirth, country);
     }
     
 }
