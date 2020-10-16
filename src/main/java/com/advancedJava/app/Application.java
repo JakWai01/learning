@@ -23,10 +23,10 @@ public class Application {
 			result += a;
 		}
 
-		System.out.println(result); 
+		System.out.println(result);
 		scan.close();
 
 		Felttip felt = new Felttip("red");
 		System.out.println(felt.getColor());
-}
+	}
 }

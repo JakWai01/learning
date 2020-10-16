@@ -3,325 +3,123 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.advancedJava</groupId>
-    <artifactId>advancedJava.com-app</artifactId>
+    <artifactId>learningTeamVM</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <licenses>
-        <license>
-            <name>${appLicense}</name>
-        </license>
-    </licenses>
 
-    <name>advancedJava-com-application</name>
-    <description>Java repository to get in advanced java concepts.</description>
+    <packaging>war</packaging>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <mainClass>com.advancedJava.app.Application</mainClass>
-
-        <appId>com.advancedJava.app</appId>
-        <appUUID>abe1d120-0f25-11eb-adc1-0242ac120002</appUUID>
-        <appMaintainer>mail@jakobwaibel.com</appMaintainer>
-        <appLicense>AGPL-3.0</appLicense>
-        <appCategory>Utility</appCategory>
+        <java.version>11</java.version>
+        <flavour.version>0.2.1</flavour.version>
+        <teavm.version>0.7.0-dev-1145</teavm.version>
+        <jackson.version>2.11.3</jackson.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.7.0-M1</version>
-            <scope>test</scope>
+            <groupId>org.teavm</groupId>
+            <artifactId>teavm-classlib</artifactId>
+            <version>${teavm.version}</version>
         </dependency>
-
-       
         <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency> 
-
-
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>ebean-test</artifactId>
-            <version>12.3.1</version>
-            <scope>test</scope>
+            <groupId>org.teavm</groupId>
+            <artifactId>teavm-metaprogramming-impl</artifactId>
+            <version>${teavm.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-netty</artifactId>
-            <version>1.30.0</version>
+            <groupId>org.teavm.flavour</groupId>
+            <artifactId>teavm-flavour-widgets</artifactId>
+            <version>${flavour.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-protobuf</artifactId>
-            <version>1.30.0</version>
-        </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-stub</artifactId>
-            <version>1.30.0</version>
+            <groupId>org.teavm.flavour</groupId>
+            <artifactId>teavm-flavour-rest</artifactId>
+            <version>${flavour.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>ebean</artifactId>
-            <version>12.3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>ebean-querybean</artifactId>
-            <version>12.3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>io.ebean</groupId>
-            <artifactId>querybean-generator</artifactId>
-            <version>12.3.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.14.jre7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.30</version>
-        </dependency>
-
-        <dependency>
-            <groupId>at.favre.lib</groupId>
-            <artifactId>bcrypt</artifactId>
-            <version>0.9.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.simplejavamail</groupId>
-            <artifactId>simple-java-mail</artifactId>
-            <version>6.0.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.nats</groupId>
-            <artifactId>jnats</artifactId>
-            <version>2.6.8</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.3.3</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>3.3.3</version>
-            <scope>test</scope>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <layout>default</layout>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+
+        <repository>
+            <id>teavm-dev</id>
+            <url>https://dl.bintray.com/konsoletyper/teavm</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <layout>default</layout>
+            <url>https://repo1.maven.org/maven2</url>
+        </pluginRepository>
+
+        <pluginRepository>
+            <id>teavm-dev</id>
+            <url>https://dl.bintray.com/konsoletyper/teavm</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
-        <extensions>
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>1.6.2</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
-                <groupId>org.xolstice.maven.plugins</groupId>
-                <artifactId>protobuf-maven-plugin</artifactId>
-                <version>0.6.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>compile-custom</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
-                    <protocArtifact>com.google.protobuf:protoc:3.12.3:exe:${os.detected.classifier}</protocArtifact>
-                    <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>
-                        io.grpc:protoc-gen-grpc-java:1.30.0:exe:${os.detected.classifier}
-                    </pluginArtifact>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.directory}/generated/js</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.teavm</groupId>
+                <artifactId>teavm-maven-plugin</artifactId>
+                <version>${teavm.version}</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <id>web-client</id>
+                        <phase>prepare-package</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>compile</goal>
                         </goals>
                         <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <manifestEntries>
-                                        <Main-Class>${mainClass}</Main-Class>
-                                    </manifestEntries>
-                                </transformer>
-                            </transformers>
-
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/*.SF</exclude>
-                                        <exclude>META-INF/*.DSA</exclude>
-                                        <exclude>META-INF/*.RSA</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
+                            <targetDirectory>${project.build.directory}/generated/js/teavm</targetDirectory>
+                            <mainClass>com.advancedJava.teavmExample.Client</mainClass>
+                            <minifying>true</minifying>
+                            <debugInformationGenerated>true</debugInformationGenerated>
+                            <sourceMapsGenerated>true</sourceMapsGenerated>
+                            <sourceFilesCopied>true</sourceFilesCopied>
+                            <optimizationLevel>ADVANCED</optimizationLevel>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>io.repaint.maven</groupId>
-                <artifactId>tiles-maven-plugin</artifactId>
-                <version>2.17</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <tiles>
-                        <tile>org.avaje.tile:java-compile:11</tile>
-                        <tile>io.ebean.tile:enhancement:12.3.4</tile>
-                    </tiles>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.0</version>
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>platform-apple</id>
-            <activation>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <executable>jpackage</executable>
-                            <arguments>
-                                <argument>--input</argument>
-                                <argument>target</argument>
-                                <argument>--name</argument>
-                                <argument>${project.name}</argument>
-                                <argument>--description</argument>
-                                <argument>${project.description}</argument>
-                                <argument>--main-jar</argument>
-                                <argument>${project.artifactId}-${project.version}.jar</argument>
-                                <argument>--main-class</argument>
-                                <argument>${mainClass}</argument>
-                                <argument>--dest</argument>
-                                <argument>staging</argument>
-
-                                <!-- Platform specific -->
-                                <argument>--type</argument>
-                                <argument>dmg</argument>
-                                <argument>--mac-package-identifier</argument>
-                                <argument>${appId}</argument>
-                            </arguments>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>platform-microsoft</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <executable>jpackage</executable>
-                            <arguments>
-                                <argument>--input</argument>
-                                <argument>target</argument>
-                                <argument>--name</argument>
-                                <argument>${project.name}</argument>
-                                <argument>--description</argument>
-                                <argument>${project.description}</argument>
-                                <argument>--main-jar</argument>
-                                <argument>${project.artifactId}-${project.version}.jar</argument>
-                                <argument>--main-class</argument>
-                                <argument>${mainClass}</argument>
-                                <argument>--dest</argument>
-                                <argument>staging</argument>
-
-                                <!-- Platform specific -->
-                                <argument>--type</argument>
-                                <argument>msi</argument>
-                                <argument>--win-menu</argument>
-                                <argument>--win-menu-group</argument>
-                                <argument>${appCategory}</argument>
-                                <argument>--win-shortcut</argument>
-                                <argument>--win-upgrade-uuid</argument>
-                                <argument>${appUUID}</argument>
-
-                                <!-- App specific -->
-                                <argument>--win-console</argument>
-                            </arguments>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
