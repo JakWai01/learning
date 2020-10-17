@@ -20,6 +20,8 @@ public class Client extends ApplicationTemplate {
         byte[] result1 = client.encodeBase64(encodeMe);
         String result2 = client.decodeBase64(result1);
         System.out.println(result2);
+
+        System.out.println("Hello World to the Browser!");
     }
 
     public String getUserName() {
