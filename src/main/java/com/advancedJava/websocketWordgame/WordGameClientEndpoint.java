@@ -16,9 +16,12 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 
+import org.glassfish.tyrus.client.ClientManager;
+
 @ClientEndpoint
 public class WordGameClientEndpoint {
 
+    private static CountDownLatch latch;
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
     @OnOpen
@@ -55,6 +58,26 @@ public class WordGameClientEndpoint {
     public void onClose(Session session, CloseReason closeReason) {
 
         logger.info(String.format("Session %s close because of %s", session.getId(), closeReason));
+
+        latch.countDown();
+    }
+
+    public static void main(String[] args) {
+
+        latch = new CountDownLatch(1);
+    
+        ClientManager client = ClientManager.createClient();
+
+        try {
+
+            client.connectToServer(WordGameClientEndpoint.class, new URI("ws://localhost:8025/websockets/game"));
+
+            latch.await();
+        } catch (DeploymentException | URISyntaxException  | InterruptedException e) {
+
+            throw new RuntimeException(e);
+        }
+
     }
 }
  
