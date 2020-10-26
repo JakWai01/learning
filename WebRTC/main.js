@@ -1,45 +1,159 @@
-var iceConfigurationSend = {
-  iceServers: [
-    {
-      urls: 'turn: my-turn-server.mycompany.com:19403',
-      username: 'optional username',
-      credential: 'auth-token'
+(function () {
+  var connectButton = null;
+  var disconnectButton = null;
+  var sendButton = null;
+  var messageInputBox = null;
+  var receiveBox = null;
+
+  var localConnection = null;
+  var remoteConnection = null;
+
+  var sendChannel = null;
+  var receiveChannel = null;
+
+  function startup() {
+    connectButton = document.getElementById("connectButton");
+    disconnectButton = document.getElementById("disconnectButton");
+    sendButton = document.getElementById("sendButton");
+    messageInputBox = document.getElementById("message");
+    receiveBox = document.getElementById("receivebox");
+
+    connectButton.addEventListener("click", connectPeers, false);
+    disconnectButton.addEventListener("click", disconnectPeers, false);
+    sendButton.addEventListener("click", sendMessage, false);
+  }
+
+  function connectPeers() {
+    var iceConfiguration = {
+      iceServers: [
+        {
+          urls: "turn: my-turn-server.mycompany.com:19403",
+          username: "optional username",
+          credential: "auth-token",
+        },
+      ],
+    };
+
+    localConnection = new RTCPeerConnection(iceConfiguration);
+
+    sendChannel = localConnection.createDataChannel("sendChannel");
+    sendChannel.onopen = handleSendChannelStatusChange;
+    sendChannel.onclose = handleSendChannelStatusChange;
+
+    remoteConnection = new RTCPeerConnection();
+    remoteConnection.ondatachannel = receiveChannelCallback;
+
+    localConnection.onicecandidate = (e) =>
+      !e.candidate ||
+      remoteConnection
+        .addIceCandidate(e.candidate)
+        .catch(handleAddCandidateError);
+
+    remoteConnection.onicecandidate = (e) =>
+      !e.candidate ||
+      localConnection
+        .addIceCandidate(e.candidate)
+        .catch(handleAddCandidateError);
+
+    localConnection
+      .createOffer()
+      .then((offer) => localConnection.setLocalDescription(offer))
+      .then(() =>
+        remoteConnection.setRemoteDescription(localConnection.localDescription)
+      )
+      .then(() => remoteConnection.createAnswer())
+      .then((answer) => remoteConnection.setLocalDescription(answer))
+      .then(() =>
+        localConnection.setRemoteDescription(remoteConnection.localDescription)
+      )
+      .catch(handleCreateDescriptionError);
+  }
+
+  function handleCreateDescriptionError(error) {
+    console.log("Unable to create an offer: " + error.toString());
+  }
+
+  function handleLocalAddCandidateSuccess() {
+    connectButton.disabled = true;
+  }
+
+  function handleRemoteAddCandidateSuccess() {
+    disconnectButton.disabled = false;
+  }
+
+  function handleAddCandidateError() {
+    console.log("Oh noes! addICECandidate failed!");
+  }
+
+  function sendMessage() {
+    var message = messageInputBox.value;
+    sendChannel.send(message);
+
+    messageInputBox.value = "";
+    messageInputBox.focus();
+  }
+
+  function handleSendChannelStatusChange(event) {
+    if (sendChannel) {
+      var state = sendChannel.readyState;
+
+      if (state === "open") {
+        messageInputBox.disabled = false;
+        messageInputBox.focus();
+        sendButton.disabled = false;
+        disconnectButton.disabled = false;
+        connectButton.disabled = true;
+      } else {
+        messageInputBox.disabled = true;
+        sendButton.disabled = true;
+        connectButton.disabled = false;
+        disconnectButton.disabled = true;
+      }
     }
-  ]
-}
+  }
 
-const peerConnection = new RTCPeerConnection(iceConfigurationSend);
-// ordered can be set to false if the order of the messages does not matter
-// maxPacketLifeTime The maximum number of milliseconds that attempts to transfer a message may take in unreliable mode
-// maxRetransmits The maximum number of times the user agent should attempt to retransmit a message which fails the first time in unreliable mode
-// protocol The name of the sub-protocol being used on the RTCDataChannel, if any.
-// negotiated true if you want to be able to call createDataChannel from both sides, false if only from one
-// id An 16-bit numeric ID for the channel; permitted values are 0-65534. If you don't include this option, the user agent will select an ID for you. 
-const dataChannel = peerConnection.createDataChannel("testChannel", [
-  (ordered = true),
-  (maxPacketLifeTime = null),
-  (maxRetransmits = null),
-  (protocol = ""),
-  (negotiated = false),
-  (id = null),
-]);
+  function receiveChannelCallback(event) {
+    receiveChannel = event.channel;
+    receiveChannel.onmessage = handleReceiveMessage;
+    receiveChannel.onopen = handleReceiveChannelStatusChange;
+    receiveChannel.onclose = handleReceiveChannelStatusChange;
+  }
 
-dataChannel.onopen = event => {
-    channel.send("Hello World!")    
-};
+  function handleReceiveMessage(event) {
+    var el = document.createElement("p");
+    var txtNode = document.createTextNode(event.data);
 
-dataChannel.onmessage = event => {
-    console.log(event.data)
-};
+    el.appendChild(txtNode);
+    receiveBox.appendChild(el);
+  }
 
-peerConnection.ondatachannel = event => {
-    var channel = event.channel;
-    
-    channel.onopen = event => {
-        channel.send("A small step for you a big step for me");
+  function handleReceiveChannelStatusChange(event) {
+    if (receiveChannel) {
+      console.log(
+        "Receive channel's status has changed to " + receiveChannel.readyState
+      );
     }
+  }
 
-    channel.onmessage = event => {
-        console.log(event.data);
-    }
-}
+  function disconnectPeers() {
+    sendChannel.close();
+    receiveChannel.close();
+
+    localConnection.close();
+    remoteConnection.close();
+
+    sendChannel = null;
+    receiveChannel = null;
+    localConnection = null;
+    remoteConnection = null;
+
+    connectButton.disabled = false;
+    disconnectButton.disabled = true;
+    sendButton.disabled = true;
+
+    messageInputBox.value = "";
+    messageInputBox.disabled = true;
+  }
+
+  window.addEventListener("load", startup, false);
+})();

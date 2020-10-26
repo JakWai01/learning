@@ -2,7 +2,7 @@
   "name": "WebRTC",
   "version": "1.0.0",
   "description": "",
-  "main": "receiving.js",
+  "main": "main.js",
   "scripts": {
     "devStart": "nodemon server.js"
   },

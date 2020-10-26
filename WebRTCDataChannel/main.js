@@ -1,22 +1,16 @@
 (function() {
 
-    // Define "global" variables
-    
     var connectButton = null;
     var disconnectButton = null;
     var sendButton = null;
     var messageInputBox = null;
     var receiveBox = null;
     
-    var localConnection = null;   // RTCPeerConnection for our "local" connection
-    var remoteConnection = null;  // RTCPeerConnection for the "remote"
+    var localConnection = null;   
+    var remoteConnection = null; 
     
-    var sendChannel = null;       // RTCDataChannel for the local (sender)
-    var receiveChannel = null;    // RTCDataChannel for the remote (receiver)
-    
-    // Functions
-    
-    // Set things up, connect event listeners, etc.
+    var sendChannel = null;       
+    var receiveChannel = null;    
     
     function startup() {
       connectButton = document.getElementById('connectButton');
@@ -24,8 +18,6 @@
       sendButton = document.getElementById('sendButton');
       messageInputBox = document.getElementById('message');
       receiveBox = document.getElementById('receivebox');
-  
-      // Set event listeners for user interface widgets
   
       connectButton.addEventListener('click', connectPeers, false);
       disconnectButton.addEventListener('click', disconnectPeers, false);
