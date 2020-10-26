@@ -1,4 +1,14 @@
-const peerConnection = new RTCPeerConnection();
+var iceConfigurationSend = {
+  iceServers: [
+    {
+      urls: 'turn: my-turn-server.mycompany.com:19403',
+      username: 'optional username',
+      credential: 'auth-token'
+    }
+  ]
+}
+
+const peerConnection = new RTCPeerConnection(iceConfigurationSend);
 // ordered can be set to false if the order of the messages does not matter
 // maxPacketLifeTime The maximum number of milliseconds that attempts to transfer a message may take in unreliable mode
 // maxRetransmits The maximum number of times the user agent should attempt to retransmit a message which fails the first time in unreliable mode
@@ -21,3 +31,15 @@ dataChannel.onopen = event => {
 dataChannel.onmessage = event => {
     console.log(event.data)
 };
+
+peerConnection.ondatachannel = event => {
+    var channel = event.channel;
+    
+    channel.onopen = event => {
+        channel.send("A small step for you a big step for me");
+    }
+
+    channel.onmessage = event => {
+        console.log(event.data);
+    }
+}
