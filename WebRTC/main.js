@@ -14,9 +14,9 @@
     disconnectButton = document.getElementById("disconnectButton");
     sendButton = document.getElementById("sendButton");
 
-    connectButton.addEventListener("click", connectPeers, false);
-    disconnectButton.addEventListener("click", disconnectPeers, false);
-    sendButton.addEventListener("click", sendMessage, false);
+    connectButton.addEventListener("click", connectPeers);
+    disconnectButton.addEventListener("click", disconnectPeers);
+    sendButton.addEventListener("click", sendMessage);
   }
 
   function connectPeers() {
@@ -69,14 +69,6 @@
     console.log("Unable to create an offer: " + error.toString());
   }
 
-  function handleLocalAddCandidateSuccess() {
-    connectButton.disabled = true;
-  }
-
-  function handleRemoteAddCandidateSuccess() {
-    disconnectButton.disabled = false;
-  }
-
   function handleAddCandidateError() {
     console.log("Oh noes! addICECandidate failed!");
   }
@@ -93,11 +85,11 @@
       if (state === "open") {
         sendButton.disabled = false;
         disconnectButton.disabled = false;
-        connectButton.disabled = true;
-      } else {
-        sendButton.disabled = true;
         connectButton.disabled = false;
-        disconnectButton.disabled = true;
+      } else {
+        sendButton.disabled = false;
+        connectButton.disabled = false;
+        disconnectButton.disabled = false;
       }
     }
   }
@@ -132,12 +124,7 @@
     receiveChannel = null;
     localConnection = null;
     remoteConnection = null;
-
-    connectButton.disabled = false;
-    disconnectButton.disabled = true;
-    sendButton.disabled = true;
-
   }
 
-  window.addEventListener("load", startup, false);
+  //window.addEventListener("load", startup, false);
 })();
