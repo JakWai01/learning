@@ -1,22 +1,18 @@
 (function () {
-  var connectButton = null;
-  var disconnectButton = null;
-  var sendButton = null;
-  var messageInputBox = null;
-  var receiveBox = null;
+   var connectButton = null;
+   var disconnectButton = null;
+   var sendButton = null;
 
-  var localConnection = null;
-  var remoteConnection = null;
+   var localConnection = null;
+   var remoteConnection = null;
 
-  var sendChannel = null;
-  var receiveChannel = null;
+   var sendChannel = null;
+   var receiveChannel = null;
 
   function startup() {
     connectButton = document.getElementById("connectButton");
     disconnectButton = document.getElementById("disconnectButton");
     sendButton = document.getElementById("sendButton");
-    messageInputBox = document.getElementById("message");
-    receiveBox = document.getElementById("receivebox");
 
     connectButton.addEventListener("click", connectPeers, false);
     disconnectButton.addEventListener("click", disconnectPeers, false);
@@ -86,11 +82,8 @@
   }
 
   function sendMessage() {
-    var message = messageInputBox.value;
+    var message = "Hello World";
     sendChannel.send(message);
-
-    messageInputBox.value = "";
-    messageInputBox.focus();
   }
 
   function handleSendChannelStatusChange(event) {
@@ -98,13 +91,10 @@
       var state = sendChannel.readyState;
 
       if (state === "open") {
-        messageInputBox.disabled = false;
-        messageInputBox.focus();
         sendButton.disabled = false;
         disconnectButton.disabled = false;
         connectButton.disabled = true;
       } else {
-        messageInputBox.disabled = true;
         sendButton.disabled = true;
         connectButton.disabled = false;
         disconnectButton.disabled = true;
@@ -120,11 +110,7 @@
   }
 
   function handleReceiveMessage(event) {
-    var el = document.createElement("p");
-    var txtNode = document.createTextNode(event.data);
-
-    el.appendChild(txtNode);
-    receiveBox.appendChild(el);
+    console.log(event.data)
   }
 
   function handleReceiveChannelStatusChange(event) {
@@ -151,8 +137,6 @@
     disconnectButton.disabled = true;
     sendButton.disabled = true;
 
-    messageInputBox.value = "";
-    messageInputBox.disabled = true;
   }
 
   window.addEventListener("load", startup, false);
