@@ -11,29 +11,38 @@
 
 .globl _start
 _start: 
-pushq $3			#push second argument
-pushq $2 		#push first argument
+movl $3, (%esp)
+subl $4, (%esp)			#push second argument
+movl $2, (%esp)
+subl $4, (%esp) 		#push first argument
 call power 		#call the function
-add $8, %rsp		#move the stack pointer back
+add $8, %esp		#move the stack pointer back
 
-pushq %rax 		#save the first answer before
+
+movl %eax, (%esp)
+subl $4, (%esp) 		#save the first answer before
 			#calling the next function
 
-pushq $2		#push second argument
-pushq $5		#push first argument
-call power 		#call the function
-add $8, %rsp		#move the stack pointer back
+movl $2, (%esp)
+subl $4, (%esp)		#push second argument
 
-popq %rdi		#The second answer is already
+movl $2, (%esp)
+subl $4, (%esp)		#push first argument
+call power 		#call the function
+add $8, %esp		#move the stack pointer back
+
+
+movl (%esp), %edx
+addl $4, %esp		#The second answer is already
 			#in %eax. We saved the 
 			#first answer onto the stack,
 			#so now we can just pop it
 			#out into %ebx
 
-add %rax, %rdi		#add them together
+add %eax, %edi		#add them together
 			#the result is in %ebx
 
-mov $60, %rax		#exit (%ebx is returned)
+mov $60, %eax		#exit (%ebx is returned)
 syscall
 
 #PURPOSE: This function is used to compute
@@ -57,28 +66,32 @@ syscall
 #
 .type power, @function
 power: 
-pushq %rbp 	#save old base pointer
-mov %rsp, %rbp	#make stack pointer the base pointer
-sub $4, %rsp	#get room for our local storage
 
-mov 8(%rbp), %rbx #put first argument in %eax
-mov 12(%rbp), %rcx #put second argument in %ecx
+movl %ebp, (%esp)
+addl $4, (%esp) 	#save old base pointer
+mov %esp, %ebp	#make stack pointer the base pointer
+sub $4, %esp	#get room for our local storage
 
-mov %rbx, -4(%rbp) #store current result 
+mov 8(%ebp), %ebx #put first argument in %eax
+mov 12(%ebp), %ecx #put second argument in %ecx
+
+mov %ebx, -4(%ebp) #store current result 
 
 power_loop_start:
-cmp $1, %rcx	#if the power is 1, we are done
+cmp $1, %ecx	#if the power is 1, we are done
 je end_power
-mov -4(%rbp), %rax #move the current result into %eax
-imul %rbx, %rax    #multiply the current result by
+mov -4(%ebp), %eax #move the current result into %eax
+imul %ebx, %eax    #multiply the current result by
 		    #the base number
-mov %rax, -4(%rbp) #store the current result 
+mov %eax, -4(%ebp) #store the current result 
 
-dec %rcx	    #decrease the power
+dec %ecx	    #decrease the power
 jmp power_loop_start#run for the next power
 
 end_power: 
-mov -4(%rbp), %rax #return value goes in %eax
-mov %rbp, %rsp	    #restore the stack pointer
-popq %rbp 	    #restore the base pointer
+mov -4(%ebp), %eax #return value goes in %eax
+mov %ebp, %esp	    #restore the stack pointer
+
+movl (%esp), %ebp
+addl $4, %esp 	    #restore the base pointer
 ret
