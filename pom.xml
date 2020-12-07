@@ -175,7 +175,7 @@
                             <targetDirectory>${project.build.directory}/generated/wasm/wasm</targetDirectory>
                             <mainClass>local.mitia.wasm.WasmFunctions</mainClass>
                             <debugInformationGenerated>true</debugInformationGenerated>
-                            <targetType>WEBASSEMBLY</targetType>
+                            <targetType>JAVASCRIPT</targetType>
                             <optimizationLevel>FULL</optimizationLevel>
                             <heapSize>8</heapSize>
                         </configuration>
