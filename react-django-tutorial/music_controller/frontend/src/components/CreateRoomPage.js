@@ -26,19 +26,19 @@ export default class CreateRoomPage extends Component {
 
     handleVotesChange(e) {
         this.setState({
-            votesToSkip: e.target.value,
+            votesToSkip: e.target.value
         });
     }
 
     handleGuestCanPauseChange(e) {
         this.setState({
-            guestCanPause: e.target.value === "true" ? true : false,
+            guestCanPause: e.target.value === "true" ? true : false
         });
     }
 
     handleRoomButtonPressed() {
         const requestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -47,7 +47,7 @@ export default class CreateRoomPage extends Component {
                 guest_can_pause: this.state.guestCanPause
             })
         };
-        fetch('/api/create-room', requestOptions).then((response) => response.json()).then((data) => console.log(data)); 
+        fetch('/api/create-room', requestOptions).then((response) => response.json()).then((data) => this.props.history.push("/room/" + data.code)); 
     }
 
     render() {
