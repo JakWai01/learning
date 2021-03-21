@@ -9,4 +9,5 @@ urlpatterns = [
    path('album/add/', views.AlbumCreate.as_view(), name='album-add'),
    path('album/<int:pk>/', views.AlbumUpdate.as_view(), name='album-update'),
    path('album/<int:pk>/delete', views.AlbumDelete.as_view(), name='album-delete'),
+   path('register/', views.UserFormView.as_view(), name='register')
 ]
