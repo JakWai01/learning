@@ -9,18 +9,11 @@
 {% if error_message %}
     <p><strong>{{error_message}}</strong></p>
 {% endif %}
-
-<form action="{% url 'music:favorite' album.id %}" method="post">
-    {% csrf_token %}
+<ul>
     {% for song in album.song_set.all %}
-        <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
-        <label for="song{{ forloop.counter }}">
+        <li>
             {{ song.song_title }}
-            {% if song.is_favorite %}
-                <img src="http://i.imgur.com/b9b13Rd.png" /> 
-            {% endif %}<br>
-        </label>
+        </li>
     {% endfor %}
-    <input type="submit" value="Favorite">
-</form>
+</ul>
 {% endblock %}
