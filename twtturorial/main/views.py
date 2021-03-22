@@ -1,9 +1,27 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import TodoList, Item
+from .forms import CreateNewList
 
 # Create your views here.
-def index(response, id):
+def index(request, id):
     ls = TodoList.objects.get(id=id)
-    items = ls.item_set.get(id=1)
-    return HttpResponse("<h1>%s</h1><br><p>%s</p>" %(ls.name, str(items.text)))
+    return render(request, "main/list.html", {'ls': ls})
+
+def home(request):
+    return render(request, "main/home.html", {})
+
+def create(request):
+
+    if request.method == "POST":
+        form = CreateNewList(request.POST)
+
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            t = TodoList(name=n)
+            t.save()
+
+        return HttpResponseRedirect("/%i" %t.id)
+    else:
+        form = CreateNewList()
+    return render(request, "main/create.html", {"form":form})
