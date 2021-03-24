@@ -1,14 +1,16 @@
 {% extends "todoapp/base.html" %}
 {% block content %}
 
-<div class="grid">
-    <div class="place-self-center">
-        <h1 class="text-4xl">Create Todo</h1>
-        <form method="post" action="/create/" class="">
+<div class="flex justify-center h-screen items-center">
+    <div class='flex max-w-sm w-full justify-center  shadow-2xl rounded-lg overflow-hidden mx-auto flex flex-col p-5'>
+    <div class="ml-1">
+    <h1 class="text-4xl font-sans mb-8 font-semibold">Create Todo</h1>
+        <form method="post" action="/create/" class="font-sans">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit" name="save" class="">Add todo</button>
+        <button type="submit" name="save" class="bg-green-500 rounded p-1 text-white mt-6">Add Todo</button>
         </form>
+    </div>
     </div>
 </div>
 {% endblock %}

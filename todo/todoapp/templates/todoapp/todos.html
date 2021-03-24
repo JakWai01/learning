@@ -5,6 +5,8 @@ Todos
 {% endblock %}
 
 {% block content %}
+<div class="flex justify-center h-screen items-center">
+    <div class='flex max-w-sm w-full justify-center  shadow-2xl rounded-lg overflow-hidden mx-auto flex flex-col p-5'>
 <ul>
 {% for todo in todos %}
 <li>
@@ -12,4 +14,6 @@ Todos
 </li>
 {% endfor %}
 </ul>
+</div>
+</div>
 {% endblock %}
