@@ -1,4 +1,11 @@
 from graphene import ObjectType, String, Schema
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
 class Query(ObjectType):
     # this defines a Field 'hello' in our Schema with a single Argument 'name'
