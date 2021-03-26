@@ -1,19 +1,13 @@
 from graphene import ObjectType, String, Schema
-from flask import Flask
+from flask import Flask, request
+import json
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
 class Query(ObjectType):
-    # this defines a Field 'hello' in our Schema with a single Argument 'name'
     hello = String(name=String(default_value="stranger"))
     goodbye = String()
 
-    # our Resolver method takes the GraphQL context (root, info) as well as an 
-    # Argument (name) for the Field and return data for the query Response
     def resolve_hello(root, info, name):
         return f'Hello {name}!'
 
@@ -22,20 +16,7 @@ class Query(ObjectType):
 
 schema = Schema(query=Query)
 
-# we can query for our field (with the default argument)
-query_string = '{ hello }'
-result = schema.execute(query_string)
-print(result.data['hello'])
-# "Hello stranger!"
-
-# or passing the argument in the query
-query_with_argument = '{ hello(name: "GraphQL") }'
-result = schema.execute(query_with_argument)
-print(result.data['hello'])
-# "Hello GraphQL!"
-
-# we can query for our field 
-query_goodbye = '{ goodbye }'
-result = schema.execute(query_goodbye)
-print(result.data['goodbye'])
-# "See ya!"
+@app.route('/graphql', methods=['POST'])
+def graphql():
+    data = json.loads(request.data)
+    return json.dumps(schema.execute(data['query']).data)
