@@ -26,3 +26,9 @@ query_with_argument = '{ hello(name: "GraphQL") }'
 result = schema.execute(query_with_argument)
 print(result.data['hello'])
 # "Hello GraphQL!"
+
+# we can query for our field 
+query_goodbye = '{ goodbye }'
+result = schema.execute(query_goodbye)
+print(result.data['goodbye'])
+# "See ya!"
