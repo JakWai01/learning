@@ -1,6 +1,6 @@
 class ListTodos():
     def __init__(self, repo):
         self.repo = repo
-    
-    def __str__(self):
-        return repo.list()
+    def __repr__(self):
+        return str(self.repo.list())
+

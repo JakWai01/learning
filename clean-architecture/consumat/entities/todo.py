@@ -3,5 +3,5 @@ class Todo:
         self.task = task
         self.done = done
 
-    def __str__(self):
+    def __repr__(self):
         return self.task
