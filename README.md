@@ -1,2 +1,2 @@
 # learning-python
-Picking up python again. Also including my first-ever attemps to code (100DaysOfCode folder). 
+A repository for learning things concerning the python ecosystem. Disclaimer: This might be poorly written! Don't take any of this as serious guidelines!
