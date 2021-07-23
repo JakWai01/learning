@@ -1,6 +1,7 @@
 #![allow(warnings, unused)]
 mod conditionals;
 mod hello;
+mod io;
 mod loops;
 mod structs;
 
@@ -19,6 +20,8 @@ fn main() {
                 conditionals::conditionals();
             } else if val == "structs" {
                 structs::structs();
+            } else if val == "io" {
+                io::io();
             } else {
                 println!("There is no function called {} in this crate", val)
             }
