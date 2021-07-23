@@ -2,6 +2,7 @@
 mod conditionals;
 mod hello;
 mod loops;
+mod structs;
 
 use std::env;
 
@@ -16,6 +17,8 @@ fn main() {
                 loops::loops();
             } else if val == "conditionals" {
                 conditionals::conditionals();
+            } else if val == "structs" {
+                structs::structs();
             } else {
                 println!("There is no function called {} in this crate", val)
             }
