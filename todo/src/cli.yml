@@ -1,0 +1,30 @@
+name: todo-rs
+version: "1.0"
+author: Jakob Waibel <mail@jakobwaibel.com>
+about: Manage your todo's fast, efficient and memorys safe!
+args: 
+  - new:
+      short: n
+      long: new
+      help: Create a new task with the subsequent designation
+      takes_value: true
+  - done:
+      short: d
+      long: done
+      help: Mark a todo as done
+      takes_value: false
+  - undo: 
+      short: u
+      long: undo
+      help: Mark a todo as undone
+      takes_value: false
+  - file:
+      short: f
+      long: file
+      help: Set database file manually
+  - list: 
+      short: l
+      long: list
+      help: List all todo's and their respective status
+
+    
