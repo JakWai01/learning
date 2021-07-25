@@ -2,7 +2,6 @@
 extern crate clap;
 use clap::App;
 use rusqlite::{Connection, Result};
-use std::io::{stdin, stdout, Write};
 
 #[derive(Debug)]
 struct Task {
@@ -17,40 +16,27 @@ struct Count {
 }
 
 fn main() -> Result<()> {
-    loop {
-        let yaml = load_yaml!("cli.yml");
-        let matches = App::from(yaml).get_matches();
-        let mut s = String::new();
-        println!("--------------------------");
-        println!("Please choose an option:");
-        println!("[0] Display todo's");
-        println!("[1] Create todo");
-        println!("[2] Finish todo");
-        println!("[3] Exit");
-        println!("--------------------------");
+    let yaml = load_yaml!("cli.yml");
+    let matches = App::from(yaml).get_matches();
 
-        let _ = stdout().flush();
-        stdin()
-            .read_line(&mut s)
-            .expect("Did not enter a correct string");
-        if let Some('\n') = s.chars().next_back() {
-            s.pop();
-        }
-        if let Some('\r') = s.chars().next_back() {
-            s.pop();
-        }
-
-        if s == "0" {
-            display()?;
-        } else if s == "1" {
-            create()?;
-        } else if s == "2" {
-            finish()?;
-        } else if s == "3" {
-            break;
-        } else {
-            println!("Please make a valid guess");
-        }
+    if matches.is_present("list") {
+        display()?;
+    } else if matches.is_present("new") {
+        create(String::from(matches.value_of("new").unwrap()))?;
+    } else if matches.is_present("done") {
+        finish(
+            String::from(matches.value_of("done").unwrap())
+                .parse::<i32>()
+                .unwrap(),
+        )?;
+    } else if matches.is_present("undo") {
+        undo(
+            String::from(matches.value_of("undo").unwrap())
+                .parse::<i32>()
+                .unwrap(),
+        )?;
+    } else {
+        println!("Please make a valid guess");
     }
 
     Ok(())
@@ -75,43 +61,26 @@ fn display() -> Result<()> {
     Ok(())
 }
 
-fn create() -> Result<()> {
+fn create(task: String) -> Result<()> {
     let conn: rusqlite::Connection = connect(String::from("todo.db"));
 
-    let mut s = String::new();
-    print!("Enter new task: ");
-    let _ = stdout().flush();
-    stdin()
-        .read_line(&mut s)
-        .expect("Did not enter a correct string");
-    if let Some('\n') = s.chars().next_back() {
-        s.pop();
-    }
-    if let Some('\r') = s.chars().next_back() {
-        s.pop();
-    }
-
-    conn.execute("INSERT INTO todos (task, done) values (?1, 0)", &[&s])?;
+    conn.execute("INSERT INTO todos (task, done) values (?1, 0)", &[&task])?;
 
     Ok(())
 }
 
-fn finish() -> Result<()> {
+fn finish(id: i32) -> Result<()> {
     let conn = connect(String::from("todo.db"));
-    let mut s = String::new();
-    print!("Enter Id of finished todo: ");
 
-    let _ = stdout().flush();
-    stdin()
-        .read_line(&mut s)
-        .expect("Did not enter a correct string");
-    if let Some('\n') = s.chars().next_back() {
-        s.pop();
-    }
-    if let Some('\r') = s.chars().next_back() {
-        s.pop();
-    }
-    conn.execute("UPDATE todos SET done = 1 WHERE id = ?1", &[&s])?;
+    conn.execute("UPDATE todos SET done = 1 WHERE id = ?1", &[&id])?;
+
+    Ok(())
+}
+
+fn undo(id: i32) -> Result<()> {
+    let conn = connect(String::from("todo.db"));
+
+    conn.execute("UPDATE todos set done = 0 WHERE id = ?1", &[&id])?;
 
     Ok(())
 }

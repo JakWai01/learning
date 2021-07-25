@@ -22,6 +22,7 @@ args:
       short: f
       long: file
       help: Set database file manually
+      takes_value: true
   - list: 
       short: l
       long: list
