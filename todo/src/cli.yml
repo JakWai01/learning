@@ -12,12 +12,12 @@ args:
       short: d
       long: done
       help: Mark a todo as done
-      takes_value: false
+      takes_value: true
   - undo: 
       short: u
       long: undo
       help: Mark a todo as undone
-      takes_value: false
+      takes_value: true
   - file:
       short: f
       long: file

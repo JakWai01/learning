@@ -39,6 +39,7 @@ fn main() -> Result<()> {
         if let Some('\r') = s.chars().next_back() {
             s.pop();
         }
+
         if s == "0" {
             display()?;
         } else if s == "1" {
@@ -90,18 +91,7 @@ fn create() -> Result<()> {
         s.pop();
     }
 
-    let mut stmt = conn.prepare("SELECT MAX(t.id) from todos t;")?;
-    let values = stmt.query_map([], |row| Ok(Count { count: row.get(0)? }))?;
-    let mut max_value = 0;
-    for val in values {
-        let current_value = val.unwrap().count;
-        max_value = current_value + 1;
-    }
-
-    conn.execute(
-        "INSERT INTO todos (id, task, done) values (?1, ?2, 0)",
-        &[&max_value.to_string(), &s],
-    )?;
+    conn.execute("INSERT INTO todos (task, done) values (?1, 0)", &[&s])?;
 
     Ok(())
 }
@@ -132,7 +122,7 @@ fn connect(filename: String) -> rusqlite::Connection {
 
     conn.execute(
         "create table if not exists todos (
-            id integer primary key,
+            id integer primary key autoincrement,
             task text not null,
             done integer not null
         )",
