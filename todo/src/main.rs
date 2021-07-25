@@ -43,7 +43,7 @@ fn main() -> Result<()> {
 }
 
 fn display() -> Result<()> {
-    let conn = connect(String::from("todo.db"));
+    let conn = connect();
 
     let mut stmt = conn.prepare("SELECT t.id, t.task, t.done from todos t;")?;
     let tasks = stmt.query_map([], |row| {
@@ -55,14 +55,19 @@ fn display() -> Result<()> {
     })?;
 
     for task in tasks {
-        println!("Found task {:?}", task);
+        let current_task = task.unwrap();
+        if current_task.done == 0 {
+            println!("({:0>2}) [ ] {}", current_task.id, current_task.task);
+        } else {
+            println!("({:0>2}) [X] {}", current_task.id, current_task.task);
+        }
     }
 
     Ok(())
 }
 
 fn create(task: String) -> Result<()> {
-    let conn: rusqlite::Connection = connect(String::from("todo.db"));
+    let conn: rusqlite::Connection = connect();
 
     conn.execute("INSERT INTO todos (task, done) values (?1, 0)", &[&task])?;
 
@@ -70,7 +75,7 @@ fn create(task: String) -> Result<()> {
 }
 
 fn finish(id: i32) -> Result<()> {
-    let conn = connect(String::from("todo.db"));
+    let conn = connect();
 
     conn.execute("UPDATE todos SET done = 1 WHERE id = ?1", &[&id])?;
 
@@ -78,15 +83,15 @@ fn finish(id: i32) -> Result<()> {
 }
 
 fn undo(id: i32) -> Result<()> {
-    let conn = connect(String::from("todo.db"));
+    let conn = connect();
 
     conn.execute("UPDATE todos set done = 0 WHERE id = ?1", &[&id])?;
 
     Ok(())
 }
 
-fn connect(filename: String) -> rusqlite::Connection {
-    let conn = Connection::open(filename);
+fn connect() -> rusqlite::Connection {
+    let conn = Connection::open("todo.db");
     let conn = conn.unwrap();
 
     conn.execute(
