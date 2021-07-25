@@ -1,4 +1,8 @@
+#[macro_use]
+extern crate clap;
+use clap::App;
 use rusqlite::{Connection, Result};
+use std::io::{stdin, stdout, Write};
 
 #[derive(Debug)]
 struct Task {
@@ -14,7 +18,8 @@ struct Count {
 
 fn main() -> Result<()> {
     loop {
-        use std::io::{stdin, stdout, Write};
+        let yaml = load_yaml!("cli.yml");
+        let matches = App::from(yaml).get_matches();
         let mut s = String::new();
         println!("--------------------------");
         println!("Please choose an option:");
@@ -51,7 +56,6 @@ fn main() -> Result<()> {
 }
 
 fn display() -> Result<()> {
-    println!("Display");
     let conn = connect(String::from("todo.db"));
 
     let mut stmt = conn.prepare("SELECT t.id, t.task, t.done from todos t;")?;
@@ -71,12 +75,10 @@ fn display() -> Result<()> {
 }
 
 fn create() -> Result<()> {
-    println!("Create");
     let conn: rusqlite::Connection = connect(String::from("todo.db"));
 
     let mut s = String::new();
     print!("Enter new task: ");
-    use std::io::{stdin, stdout, Write};
     let _ = stdout().flush();
     stdin()
         .read_line(&mut s)
@@ -105,13 +107,10 @@ fn create() -> Result<()> {
 }
 
 fn finish() -> Result<()> {
-    println!("Finish");
     let conn = connect(String::from("todo.db"));
-
     let mut s = String::new();
     print!("Enter Id of finished todo: ");
 
-    use std::io::{stdin, stdout, Write};
     let _ = stdout().flush();
     stdin()
         .read_line(&mut s)
@@ -129,7 +128,6 @@ fn finish() -> Result<()> {
 
 fn connect(filename: String) -> rusqlite::Connection {
     let conn = Connection::open(filename);
-
     let conn = conn.unwrap();
 
     conn.execute(
