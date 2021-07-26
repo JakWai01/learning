@@ -36,7 +36,7 @@ fn main() -> Result<()> {
                 .unwrap(),
         )?;
     } else {
-        println!("Please make a valid guess");
+        println!("Use -h to display more information");
     }
 
     Ok(())
