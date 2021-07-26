@@ -1,7 +1,7 @@
 name: todo-rs
 version: "1.0"
 author: Jakob Waibel <mail@jakobwaibel.com>
-about: Manage your todo's fast, efficient and memorys safe!
+about: Manage your todo's fast, efficient and memory-safe!
 setting: ArgRequiredElseHelp
 args: 
   - new:
