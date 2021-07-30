@@ -1,12 +1,7 @@
 [package]
 name = "blog_os"
 version = "0.1.0"
-edition = "2018"
 authors = ["Jakob Waibel <mail@jakobwaibel.com>"]
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
 
 # the profile used for `cargo build`
 [profile.dev]
@@ -14,4 +9,10 @@ panic = "abort" # disable stack unwinding on panic
 
 # the profile used for `cargo build --release`
 [profile.release]
-panic = "abort" # diable stack unwinding on panic
+panic = "abort" # disable stack unwinding on panic
+
+[dependencies]
+bootloader = "0.9.8"
+
+[build]
+target = "x86_64-blog_os.json"
