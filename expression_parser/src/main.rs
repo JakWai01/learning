@@ -19,20 +19,61 @@ impl Node {
     fn new(value: String, left: Option<Box<Node>>, right: Option<Box<Node>>) -> Self {
         Self{value: value, left: left, right: right}
     }
+
+    fn expr(&self, psc: ProgramScanner) -> Self {
+        let token: Option<String> = psc.nextTokenOrNull(NUMBER);
+        if token != None {
+           Self{value: token.unwrap(), left: None, right: None} 
+        } else {
+            token = psc.nextTokenOrNull("\\(");
+            let left: Option<Box<Node>> = self.expr(psc);
+            token = psc.nextToken(OPERATOR);
+            let value: String = token.unwrap();
+            let right: Option<Box<Node>> = self.expr(psc);
+            token = psc.nextTokenOrNull("\\)");
+            
+            Self{value: value, left: left, right: right}
+        }
+    }
+
+    fn evaluate(&self) -> f64 {
+        let mut result: f64 = 0.0;
+        match self.left {
+            None => self.value.parse().unwrap(),
+            _    => {
+                let l: f64 = self.left.unwrap().evaluate();
+                let r: f64 = self.right.unwrap().evaluate();
+                match self.value.as_str() {
+                    "+" => result = l + r,
+                    "-" => result = l - r,
+                    "*" => result = l * r,
+                    "/" => result = l / r,
+                }
+                result
+            }
+        } 
+    }
+
+    fn show(&self) -> () {
+        match self.left {
+            None => println!("{}", self.value),
+            _    => {
+                self.left.unwrap().show();
+                println!("{}", self.value);
+                self.right.unwrap().show();
+            }
+        } 
+    }
 }
 
 
 fn main() {
     let filename = String::from("test.apl");
-    
-    let node = Node { value: String::from("1"), left: None, right: None }; 
 
-    println!("{:?}", node);
+    let psc: ProgramScanner = ProgramScanner::new(filename).expect("File not found!");
+    let result: Node = Node.expr(psc);
 
-    println!("{}", filename);
-
-    let contents = fs::read_to_string(filename).expect("Something went wrong reading the file");
-
-    println!("With text: \n{}", contents);
-
+    println!("Success!");
+    println!("Result = {}", result.evaluate());
+    result.show();
 }
