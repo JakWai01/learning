@@ -1,4 +1,5 @@
-use std::fs;
+use lib::*;
+pub mod lib;
 
 #[allow(dead_code)]
 static NAME: &str = "[a-zA-Z_][a-zA-Z_0-9]*";
@@ -21,16 +22,16 @@ impl Node {
     }
 
     fn expr(&self, psc: ProgramScanner) -> Self {
-        let token: Option<String> = psc.nextTokenOrNull(NUMBER);
+        let mut token: Option<String> = psc.next_token_or_null(NUMBER);
         if token != None {
            Self{value: token.unwrap(), left: None, right: None} 
         } else {
-            token = psc.nextTokenOrNull("\\(");
+            token = psc.next_token_or_null("\\(");
             let left: Option<Box<Node>> = self.expr(psc);
-            token = psc.nextToken(OPERATOR);
+            token = psc.next_token(OPERATOR);
             let value: String = token.unwrap();
             let right: Option<Box<Node>> = self.expr(psc);
-            token = psc.nextTokenOrNull("\\)");
+            token = psc.next_token_or_null("\\)");
             
             Self{value: value, left: left, right: right}
         }
@@ -70,10 +71,8 @@ impl Node {
 fn main() {
     let filename = String::from("test.apl");
 
-    let psc: ProgramScanner = ProgramScanner::new(filename).expect("File not found!");
-    let result: Node = Node.expr(psc);
+    let psc: ProgramScanner = ProgramScanner::new(filename);
 
-    println!("Success!");
-    println!("Result = {}", result.evaluate());
-    result.show();
+    psc.read();
 }
+    
