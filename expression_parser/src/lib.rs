@@ -5,8 +5,9 @@ static ANYTHING: &str = ".+";
 pub struct ProgramScanner {
     filename: String,
     linenumber: i32,
-    line: String
+    line: String 
 }
+
 
 impl ProgramScanner {
     pub fn new(filename: String) -> Self {
@@ -24,15 +25,24 @@ impl ProgramScanner {
         Ok(())
     }
 
-    pub fn next_token_or_null(regex: &str) -> Option<String> {
+    pub fn next_token_or_null(&self, regex: &str) -> Option<String> {
         None
     }
 
-    pub fn next_token(regex: &str) -> Option<String> {
+    pub fn next_token(&self, regex: &str) -> Option<String> {
         None
     }
-
 }
+
+// Cant implement Copy for this type
+
+// impl Copy for ProgramScanner {}
+
+// impl Clone for ProgramScanner {
+//     fn clone(&self) -> ProgramScanner {
+//         *self
+//     }
+// }
 
 mod my_reader {
     use std::{
