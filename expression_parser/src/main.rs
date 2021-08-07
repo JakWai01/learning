@@ -42,17 +42,17 @@ impl Node {
     fn evaluate(&self) -> f64 {
         let mut result: f64 = 0.0;
         match self.left {
-            None => self.value.parse::<f64>(),
+            None => result = self.value.parse::<f64>().unwrap(),
             _    => {
-                let l: f64 = self.left.unwrap().evaluate();
-                let r: f64 = self.right.unwrap().evaluate();
+                let l: f64 = self.left.as_ref().unwrap().evaluate();
+                let r: f64 = self.right.as_ref().unwrap().evaluate();
                 match self.value.as_str() {
                     "+" => result = l + r,
                     "-" => result = l - r,
                     "*" => result = l * r,
                     "/" => result = l / r,
+                    _   => println!("Invalid operation")
                 }
-                
             }
         } 
         result
@@ -62,9 +62,9 @@ impl Node {
         match self.left {
             None => println!("{}", self.value),
             _    => {
-                self.left.unwrap().show();
+                self.left.as_ref().unwrap().show();
                 println!("{}", self.value);
-                self.right.unwrap().show();
+                self.right.as_ref().unwrap().show();
             }
         } 
     }
