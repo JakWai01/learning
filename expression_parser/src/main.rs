@@ -74,8 +74,9 @@ impl Node {
 fn main() {
     let filename = String::from("test.apl");
 
-    let psc: ProgramScanner = ProgramScanner::new(filename);
+    let mut psc: ProgramScanner = ProgramScanner::new(filename);
 
+    psc.next_line();
     psc.next_line();
 }
     

@@ -25,13 +25,20 @@ impl ProgramScanner {
         None
     }
 
-    pub fn next_line(&self) -> io::Result<()> {
+    pub fn next_line(&mut self) -> io::Result<()> {
         let file = File::open("Cargo.toml")?;
         let reader = BufReader::new(file);
+        let mut current_line_number: i32 = 0;
 
         for line in reader.lines() {
-            println!("{}", line?);
+            if current_line_number < self.linenumber {
+                current_line_number += 1;
+            } else {
+                println!("{}", line?);
+                break;
+            }
         }
+        self.linenumber += 1;
 
         Ok(())
     }
