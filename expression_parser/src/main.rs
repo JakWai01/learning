@@ -76,6 +76,6 @@ fn main() {
 
     let psc: ProgramScanner = ProgramScanner::new(filename);
 
-    psc.read();
+    psc.next_line();
 }
     

@@ -1,3 +1,6 @@
+use std::fs::File;
+use std::io::{self, prelude::*, BufReader};
+
 #[allow(dead_code)]
 static ANYTHING: &str = ".+";
 
@@ -14,17 +17,6 @@ impl ProgramScanner {
         ProgramScanner {filename: filename, linenumber: 0, line: String::from("")}
     }
 
-    pub fn read(&self) -> std::io::Result<()> {
-        let mut reader = my_reader::BufReader::open("Cargo.toml")?;
-        let mut buffer = String::new();
-
-        while let Some(line) = reader.read_line(&mut buffer) {
-            println!("{}", line?.trim());
-        }
-
-        Ok(())
-    }
-
     pub fn next_token_or_null(&self, regex: &str) -> Option<String> {
         None
     }
@@ -32,46 +24,15 @@ impl ProgramScanner {
     pub fn next_token(&self, regex: &str) -> Option<String> {
         None
     }
-}
 
-// Cant implement Copy for this type
+    pub fn next_line(&self) -> io::Result<()> {
+        let file = File::open("Cargo.toml")?;
+        let reader = BufReader::new(file);
 
-// impl Copy for ProgramScanner {}
-
-// impl Clone for ProgramScanner {
-//     fn clone(&self) -> ProgramScanner {
-//         *self
-//     }
-// }
-
-mod my_reader {
-    use std::{
-        fs::File,
-        io::{self, prelude::*},
-    };
-
-    pub struct BufReader {
-        reader: io::BufReader<File>,
-    }
-
-    impl BufReader {
-        pub fn open(path: impl AsRef<std::path::Path>) -> io::Result<Self> {
-            let file = File::open(path)?;
-            let reader = io::BufReader::new(file);
-
-            Ok(Self { reader })
+        for line in reader.lines() {
+            println!("{}", line?);
         }
 
-        pub fn read_line<'buf>(
-            &mut self,
-            buffer: &'buf mut String,
-        ) -> Option<io::Result<&'buf mut String>> {
-            buffer.clear();
-
-            self.reader
-                .read_line(buffer)
-                .map(|u| if u == 0 { None } else { Some(buffer) })
-                .transpose()
-        }
+        Ok(())
     }
 }
