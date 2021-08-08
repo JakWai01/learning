@@ -25,8 +25,8 @@ impl ProgramScanner {
         None
     }
 
-    pub fn next_line(&mut self) -> io::Result<()> {
-        let file = File::open("Cargo.toml")?;
+    pub fn next_line(&mut self, filename: &str) -> io::Result<()> {
+        let file = File::open(filename)?;
         let reader = BufReader::new(file);
         let mut current_line_number: i32 = 0;
 

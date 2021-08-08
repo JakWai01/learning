@@ -76,7 +76,6 @@ fn main() {
 
     let mut psc: ProgramScanner = ProgramScanner::new(filename);
 
-    psc.next_line();
-    psc.next_line();
+    psc.next_line("test.apl");
 }
     
