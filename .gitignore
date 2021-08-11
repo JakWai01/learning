@@ -17,3 +17,6 @@ Cargo.lock
 # Tailwind
 
 tailwind.css
+
+# dist folder
+dist
