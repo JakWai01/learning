@@ -63,8 +63,10 @@ impl Component for Model {
     }
 }
 
-
-
+// How to get the coordinates for a location
+// http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
+// How to get the elevation?
+// https://github.com/Jorl17/open-elevation/blob/master/docs/api.md
 
 fn main() {
     yew::start_app::<Model>();
