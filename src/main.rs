@@ -1,8 +1,8 @@
 use yew::prelude::*;
 use web_sys::FocusEvent;
+use std::collections::HashMap;
 
 enum Msg {
-    AddOne,
     Clicked,
 }
 
@@ -26,12 +26,6 @@ impl Component for Model {
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::AddOne => {
-                self.value += 1;
-                //the value has changed so we need to 
-                // re-render for it to appear on the page
-                true
-            },
             Msg::Clicked => {
                 self.value += 1;
                 true
@@ -69,5 +63,16 @@ impl Component for Model {
 // https://github.com/Jorl17/open-elevation/blob/master/docs/api.md
 
 fn main() {
+    get_coordinates();
     yew::start_app::<Model>();
+}
+
+fn get_coordinates() -> Result<(f64, f64), Box<dyn std::error::Error>> {
+    let resp = reqwest::blocking::get("https://httpbin.org/ip")?
+        .json::<HashMap<String, String>>()?;
+    println!("{:#?}", resp);
+
+
+    Ok((1.0, 1.0))
+
 }
