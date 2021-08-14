@@ -1,6 +1,6 @@
 use yew::prelude::*;
 use web_sys::FocusEvent;
-use std::collections::HashMap;
+use std::{collections::HashMap};
 
 enum Msg {
     Clicked,
@@ -60,19 +60,21 @@ impl Component for Model {
 // How to get the coordinates for a location
 // http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
 // How to get the elevation?
-// https://github.com/Jorl17/open-elevation/blob/master/docs/api.md
+// https://github.com/Jorl17/open-elevation/blob/master/docs/api.md#
 
-fn main() {
-    get_coordinates();
+#[tokio::main]
+async fn main() {
+    let data = get_coordinates().await.unwrap(); 
+
+    for (key, value) in &data {
+        println!("{:?} -> {}", key, value);
+    }
+
     yew::start_app::<Model>();
 }
 
-fn get_coordinates() -> Result<(f64, f64), Box<dyn std::error::Error>> {
-    let resp = reqwest::blocking::get("https://httpbin.org/ip")?
-        .json::<HashMap<String, String>>()?;
-    println!("{:#?}", resp);
-
-
-    Ok((1.0, 1.0))
-
+async fn get_coordinates() -> Result<HashMap<String, String>, Box<dyn std::error::Error>> {
+    let resp = reqwest_wasm::get("http://api.positionstack.com/v1/forward?access_key=425ffa7e6a357e019092c097563e15fd&query=%20Stuttgart").await?.json::<HashMap<String, String>>().await?;
+    println!("{:?}", resp);
+    Ok(resp)
 }
