@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 target
 *.txt
 *.db
@@ -150,3 +151,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 >>>>>>> react-website-tutorial/master
+=======
+node_modules
+.vercel
+.next
+.env
+>>>>>>> nextjs-postgres-todos/master

@@ -1,0 +1,29 @@
+{
+  "name": "@jakwai01/nextjs-postgres-todos",
+  "version": "0.0.1-alpha1",
+  "description": "An example app using NextJS and Postgres.",
+  "main": "index.js",
+  "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JakWai01/nextjs-postgres-todos.git"
+  },
+  "author": "Jakob Waibel <mail@jakobwaibel.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JakWai01/nextjs-postgres-todos/issues"
+  },
+  "homepage": "https://github.com/JakWai01/nextjs-postgres-todos#readme",
+  "dependencies": {
+    "next": "^9.5.3",
+    "postgres": "^1.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "swr": "^0.3.4"
+  }
+}
