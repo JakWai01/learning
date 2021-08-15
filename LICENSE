@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 =======
@@ -15,6 +16,10 @@
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 >>>>>>> learning-python/main
+=======
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+>>>>>>> advanced-java/main
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
@@ -25,8 +30,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
   The GNU General Public License is a free, copyleft license for
 software and other kinds of works.
 
@@ -38,6 +46,7 @@ software for all its users.  We, the Free Software Foundation, use the
 GNU General Public License for most of our software; it applies also to
 any other work released this way by its authors.  You can apply it to
 your programs, too.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -57,6 +66,8 @@ software for all its users.
 >>>>>>> how-bad/main
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
 
   When we speak of free software, we are referring to freedom, not
 price.  Our General Public Licenses are designed to make sure that you
@@ -68,8 +79,11 @@ free programs, and that you know you can do these things.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
   To protect your rights, we need to prevent others from denying you
 these rights or asking you to surrender the rights.  Therefore, you have
 certain responsibilities if you distribute copies of the software, or if
@@ -109,6 +123,7 @@ avoid the special danger that patents applied to a free program could
 make it effectively proprietary.  To prevent this, the GPL assures that
 patents cannot be used to render the program non-free.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> how-bad/main
@@ -146,6 +161,8 @@ this license.
 >>>>>>> how-bad/main
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
 
   The precise terms and conditions for copying, distribution and
 modification follow.
@@ -154,6 +171,7 @@ modification follow.
 
   0. Definitions.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -167,6 +185,9 @@ modification follow.
 =======
   "This License" refers to version 3 of the GNU General Public License.
 >>>>>>> learning-python/main
+=======
+  "This License" refers to version 3 of the GNU General Public License.
+>>>>>>> advanced-java/main
 
   "Copyright" also means copyright-like laws that apply to other kinds of
 works, such as semiconductor masks.
@@ -646,8 +667,11 @@ License would be to refrain entirely from conveying the Program.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
   13. Use with the GNU Affero General Public License.
 
   Notwithstanding any other provision of this License, you have
@@ -658,6 +682,7 @@ License will continue to apply to the part which is the covered work,
 but the special requirements of the GNU Affero General Public License,
 section 13, concerning interaction through a network will apply to the
 combination as such.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -688,6 +713,8 @@ but the work with which it is combined will remain governed by version
 >>>>>>> how-bad/main
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
 
   14. Revised Versions of this License.
 
@@ -695,14 +722,18 @@ but the work with which it is combined will remain governed by version
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
 the GNU General Public License from time to time.  Such new versions will
 be similar in spirit to the present version, but may differ in detail to
 address new problems or concerns.
 
   Each version is given a distinguishing version number.  If the
 Program specifies that a certain numbered version of the GNU General
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -719,6 +750,8 @@ Program specifies that a certain numbered version of the GNU Affero General
 >>>>>>> how-bad/main
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
 Public License "or any later version" applies to it, you have the
 option of following the terms and conditions either of that numbered
 version or of any later version published by the Free Software
@@ -726,13 +759,17 @@ Foundation.  If the Program does not specify a version number of the
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
 GNU General Public License, you may choose any version ever published
 by the Free Software Foundation.
 
   If the Program specifies that a proxy can decide which future
 versions of the GNU General Public License can be used, that proxy's
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -748,6 +785,8 @@ versions of the GNU Affero General Public License can be used, that proxy's
 >>>>>>> how-bad/main
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
 public statement of acceptance of a version permanently authorizes you
 to choose that version for the Program.
 
@@ -808,6 +847,7 @@ the "copyright" line and a pointer to where the full notice is found.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
 =======
@@ -822,6 +862,10 @@ the "copyright" line and a pointer to where the full notice is found.
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
 >>>>>>> learning-python/main
+=======
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+>>>>>>> advanced-java/main
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
@@ -830,6 +874,7 @@ the "copyright" line and a pointer to where the full notice is found.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
@@ -848,6 +893,11 @@ the "copyright" line and a pointer to where the full notice is found.
 
     You should have received a copy of the GNU General Public License
 >>>>>>> learning-python/main
+=======
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+>>>>>>> advanced-java/main
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 Also add information on how to contact you by electronic and paper mail.
@@ -855,8 +905,11 @@ Also add information on how to contact you by electronic and paper mail.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
@@ -881,6 +934,7 @@ the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> how-bad/main
@@ -902,3 +956,5 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 >>>>>>> how-bad/main
 =======
 >>>>>>> learning-python/main
+=======
+>>>>>>> advanced-java/main

@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
     "python.autoComplete.extraPaths": ["./path-to-your-code"],
+=======
+  "java.configuration.updateBuildConfiguration": "automatic"
+>>>>>>> advanced-java/main
 }
