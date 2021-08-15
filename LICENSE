@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 =======
@@ -10,6 +11,10 @@
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 >>>>>>> how-bad/main
+=======
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+>>>>>>> learning-python/main
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
@@ -19,6 +24,9 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> learning-python/main
   The GNU General Public License is a free, copyleft license for
 software and other kinds of works.
 
@@ -30,6 +38,7 @@ software for all its users.  We, the Free Software Foundation, use the
 GNU General Public License for most of our software; it applies also to
 any other work released this way by its authors.  You can apply it to
 your programs, too.
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> how-bad/main
@@ -46,6 +55,8 @@ software for all its users.
 >>>>>>> learning-rust/main
 =======
 >>>>>>> how-bad/main
+=======
+>>>>>>> learning-python/main
 
   When we speak of free software, we are referring to freedom, not
 price.  Our General Public Licenses are designed to make sure that you
@@ -56,6 +67,9 @@ free programs, and that you know you can do these things.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> learning-python/main
   To protect your rights, we need to prevent others from denying you
 these rights or asking you to surrender the rights.  Therefore, you have
 certain responsibilities if you distribute copies of the software, or if
@@ -94,6 +108,7 @@ software on general-purpose computers, but in those that do, we wish to
 avoid the special danger that patents applied to a free program could
 make it effectively proprietary.  To prevent this, the GPL assures that
 patents cannot be used to render the program non-free.
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> how-bad/main
@@ -129,6 +144,8 @@ this license.
 >>>>>>> learning-rust/main
 =======
 >>>>>>> how-bad/main
+=======
+>>>>>>> learning-python/main
 
   The precise terms and conditions for copying, distribution and
 modification follow.
@@ -139,6 +156,7 @@ modification follow.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "This License" refers to version 3 of the GNU General Public License.
 =======
   "This License" refers to version 3 of the GNU Affero General Public License.
@@ -146,6 +164,9 @@ modification follow.
 =======
   "This License" refers to version 3 of the GNU Affero General Public License.
 >>>>>>> how-bad/main
+=======
+  "This License" refers to version 3 of the GNU General Public License.
+>>>>>>> learning-python/main
 
   "Copyright" also means copyright-like laws that apply to other kinds of
 works, such as semiconductor masks.
@@ -624,6 +645,9 @@ License would be to refrain entirely from conveying the Program.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> learning-python/main
   13. Use with the GNU Affero General Public License.
 
   Notwithstanding any other provision of this License, you have
@@ -634,6 +658,7 @@ License will continue to apply to the part which is the covered work,
 but the special requirements of the GNU Affero General Public License,
 section 13, concerning interaction through a network will apply to the
 combination as such.
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> how-bad/main
@@ -661,18 +686,24 @@ but the work with which it is combined will remain governed by version
 >>>>>>> learning-rust/main
 =======
 >>>>>>> how-bad/main
+=======
+>>>>>>> learning-python/main
 
   14. Revised Versions of this License.
 
   The Free Software Foundation may publish revised and/or new versions of
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> learning-python/main
 the GNU General Public License from time to time.  Such new versions will
 be similar in spirit to the present version, but may differ in detail to
 address new problems or concerns.
 
   Each version is given a distinguishing version number.  If the
 Program specifies that a certain numbered version of the GNU General
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> how-bad/main
@@ -686,17 +717,23 @@ Program specifies that a certain numbered version of the GNU Affero General
 >>>>>>> learning-rust/main
 =======
 >>>>>>> how-bad/main
+=======
+>>>>>>> learning-python/main
 Public License "or any later version" applies to it, you have the
 option of following the terms and conditions either of that numbered
 version or of any later version published by the Free Software
 Foundation.  If the Program does not specify a version number of the
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> learning-python/main
 GNU General Public License, you may choose any version ever published
 by the Free Software Foundation.
 
   If the Program specifies that a proxy can decide which future
 versions of the GNU General Public License can be used, that proxy's
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> how-bad/main
@@ -709,6 +746,8 @@ versions of the GNU Affero General Public License can be used, that proxy's
 >>>>>>> learning-rust/main
 =======
 >>>>>>> how-bad/main
+=======
+>>>>>>> learning-python/main
 public statement of acceptance of a version permanently authorizes you
 to choose that version for the Program.
 
@@ -768,6 +807,7 @@ the "copyright" line and a pointer to where the full notice is found.
     This program is free software: you can redistribute it and/or modify
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
 =======
@@ -778,11 +818,16 @@ the "copyright" line and a pointer to where the full notice is found.
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation, either version 3 of the License, or
 >>>>>>> how-bad/main
+=======
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+>>>>>>> learning-python/main
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     GNU General Public License for more details.
@@ -798,12 +843,20 @@ the "copyright" line and a pointer to where the full notice is found.
 
     You should have received a copy of the GNU Affero General Public License
 >>>>>>> how-bad/main
+=======
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+>>>>>>> learning-python/main
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 Also add information on how to contact you by electronic and paper mail.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> learning-python/main
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
@@ -827,6 +880,7 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> how-bad/main
@@ -846,3 +900,5 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 >>>>>>> learning-rust/main
 =======
 >>>>>>> how-bad/main
+=======
+>>>>>>> learning-python/main

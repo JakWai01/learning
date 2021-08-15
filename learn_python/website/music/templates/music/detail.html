@@ -1,0 +1,19 @@
+{% extends 'music/base.html' %}
+{% block title%}Iamdb - Details{% endblock %}
+{% block body %}
+<img src="{{ album.album_logo.url }}">
+
+<h1>{{ album.album_title }}</h1>
+<h2>{{ album.artist }}</h2>
+
+{% if error_message %}
+    <p><strong>{{error_message}}</strong></p>
+{% endif %}
+<ul>
+    {% for song in album.song_set.all %}
+        <li>
+            {{ song.song_title }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
