@@ -1,7 +1,23 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "python.autoComplete.extraPaths": ["./path-to-your-code"],
 =======
   "java.configuration.updateBuildConfiguration": "automatic"
 >>>>>>> advanced-java/main
 }
+=======
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "docker",
+            "username": "postgres",
+            "password": "mysecretpassword",
+            "database": "testing"
+        }
+    ]
+}
+>>>>>>> learning-go/master
