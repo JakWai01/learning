@@ -1,4 +1,5 @@
 class Lexer():
+    # TODO: read symbols from EBNF
     _symbols = ['(', ')', '+' '-', ';']
     _white_space = ' '
     _lexeme = ''
