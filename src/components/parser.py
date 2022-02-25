@@ -42,26 +42,19 @@ class Parser():
         for token in tokens: 
             # print( 4 + 4 - 2 );
             if token == "(":
-                # 1 create tree on left side and go down
                 current_node.left = ParseTree()
                 stack.push(current_node)
                 current_node = current_node.left
             if token in ["+", "-"]:
-                # 3 set current root to "+", create tree on left and go there
-                # 5 set current root to "-", create tree on left and go there
                 current_node.root = token
                 current_node.right = ParseTree()
                 stack.push(current_node)
                 current_node = current_node.right
             if token.isdigit():
-                # 2 set value of tree to "4" and go to parent
-                # 4 set value of tree to "4" and go to parent
-                # 6 set value of tree to "2" and go to parent
                 current_node.root = int(token)
                 parent = stack.pop()
                 current_node = parent
             if token == ")":
-                # 7 move to parent
                 current_node = stack.pop()
 
         return current_node
