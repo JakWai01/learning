@@ -1,5 +1,4 @@
 import re
-from ast import Sub, Sum, BinaryOp, Number
 
 class ParseTree():
     def __init__(self, left=None, root=None, right=None):
@@ -61,9 +60,9 @@ class Parser():
 
     def eval(self, tree):
         if tree.root == "+":
-            return Sum(BinaryOp(self.eval(tree.left), self.eval(tree.right))).eval()
+            return self.eval(tree.left) + self.eval(tree.right)
         if tree.root == "-":
-            return Sub(BinaryOp(self.eval(tree.left), self.eval(tree.right))).eval()
+            return self.eval(tree.left) - self.eval(tree.right)
         if type(tree.root) == type(4):
             return int(tree.root)
 
