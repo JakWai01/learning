@@ -10,4 +10,4 @@ tokens = lexer.lex(text_input)
 parser = Parser()
 parse_tree = parser.build_parse_tree(tokens)
 
-print(parser.eval(parse_tree))
+parser.eval(parse_tree)

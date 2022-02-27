@@ -2,10 +2,11 @@ import re
 import ast
 
 class ParseTree():
-    def __init__(self, left=None, root=None, right=None):
+    def __init__(self, left=None, root=None, right=None, direct_child=None):
         self.left = left 
         self.root = root
         self.right = right
+        self.direct_child = direct_child
 
 # It's also possible using a linked list instead of implementing it with a list.
 # For the sake of brevity, we use a list. 
@@ -40,6 +41,11 @@ class Parser():
 
         for token in tokens: 
             # print( 4 + 4 - 2 );
+            if token == "print":
+                current_node.root = token
+                current_node.direct_child = ParseTree() 
+                current_node = current_node.direct_child
+
             if token == "(":
                 current_node.left = ParseTree()
                 stack.push(current_node)
@@ -59,6 +65,8 @@ class Parser():
         return current_node
 
     def eval(self, tree):
+        if tree.root == "print":
+            print(self.eval(tree.direct_child)) 
         if tree.root == "+":
             return self.eval(tree.left) + self.eval(tree.right)
         if tree.root == "-":
