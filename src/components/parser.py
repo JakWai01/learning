@@ -1,4 +1,5 @@
 import re
+import ast
 
 class ParseTree():
     def __init__(self, left=None, root=None, right=None):
@@ -31,7 +32,6 @@ class Parser():
     def __init__(self: object):
         pass
     
-
     def build_parse_tree(self: object, tokens: list[str]):
         stack = Stack()
         root = ParseTree() 
@@ -50,7 +50,7 @@ class Parser():
                 stack.push(current_node)
                 current_node = current_node.right
             if token.isdigit():
-                current_node.root = int(token)
+                current_node.root = ast.Number(token)
                 parent = stack.pop()
                 current_node = parent
             if token == ")":
@@ -63,8 +63,8 @@ class Parser():
             return self.eval(tree.left) + self.eval(tree.right)
         if tree.root == "-":
             return self.eval(tree.left) - self.eval(tree.right)
-        if type(tree.root) == type(4):
-            return int(tree.root)
+        if type(tree.root) == ast.Number:
+            return tree.root.eval()
 
 
 
